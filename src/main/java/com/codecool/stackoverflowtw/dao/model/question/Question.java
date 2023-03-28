@@ -1,9 +1,10 @@
-package com.codecool.stackoverflowtw.dao.model;
+package com.codecool.stackoverflowtw.dao.model.question;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 
 
@@ -18,7 +19,7 @@ public class Question {
     }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer question_id;
     private String title;
     private String description;
