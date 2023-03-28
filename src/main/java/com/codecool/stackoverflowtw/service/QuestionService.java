@@ -38,8 +38,6 @@ public class QuestionService {
 
     public int addNewQuestion(NewQuestionDTO question) {
         // TODo
-        int createdId = questionsDAO.addQuestion(question);
-        System.out.println(createdId);
-        return createdId;
+        return questionsDAO.addQuestion(new NewQuestionDTO("asd"));
     }
 }

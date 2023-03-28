@@ -21,7 +21,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     public QuestionsDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
     @Override
     public void sayHi() {
         System.out.println("Hi DAO!");
@@ -30,36 +29,31 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     @Override
     public List<QuestionDTO> getAllQuestion() {
         String sql = "SELECT question_id, title, description, created from question";
-
         return jdbcTemplate.query(sql, new QuestionDTORowMapper());
     }
 
     @Override
     public Optional<QuestionDTO> findQuestionById(int id) {
         String sql = "SELECT question_id,title,description, created FROM question WHERE question_id = ?";
-
         return jdbcTemplate.query(sql, new QuestionDTORowMapper(), id)
                 .stream()
                 .findFirst();
     }
 
-
     @Override
     public int addQuestion(NewQuestionDTO questionDTO) {
         String sql = "INSERT INTO question(title,description,created) values (?,?,?)";
-        
         return jdbcTemplate.update(sql, questionDTO.title(), null, LocalDateTime.now());
     }
-
     @Override
     public boolean deleteQuestionById(int theId) {
-        int delete = jdbcTemplate.update("delete from question where question_id = ?", theId);
+       int delete = jdbcTemplate.update("delete from question where question_id = ?",theId);
         return delete == 1;
     }
 
     @Override
     public void update(QuestionDTO questionDTO, int id) {
         String sql = "UPDATE question set title = ? , description = ? WHERE question_id =" + id;
-        // jdbcTemplate.update(sql, questionDTO.title(),questionDTO.description());
+        jdbcTemplate.update(sql, questionDTO.question().getTitle(),questionDTO.question().getDescription());
     }
 }

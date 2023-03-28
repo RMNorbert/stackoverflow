@@ -23,6 +23,7 @@ public class Question {
     private String title;
     private String description;
     private LocalDateTime created;
+
     public Integer getQuestion_id() {
         return question_id;
     }

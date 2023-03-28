@@ -15,7 +15,7 @@ public class QuestionDTORowMapper implements RowMapper<QuestionDTO> {
                 rs.getInt("question_id"),
                 rs.getString("title"),
                 rs.getString("description"),
-                LocalDateTime.parse(rs.getString("created"))
-        ));
+                rs.getTimestamp("created").toLocalDateTime())
+        );
     }
 }
