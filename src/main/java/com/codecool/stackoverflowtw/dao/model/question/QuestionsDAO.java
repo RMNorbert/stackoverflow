@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface QuestionsDAO {
-    void sayHi();
     List<Question> getAllQuestion();
     Optional<Question> findQuestionById(int id);
     int addQuestion(NewQuestionDTO question);

@@ -1,23 +1,42 @@
-package com.codecool.stackoverflowtw.dao.model;
+package com.codecool.stackoverflowtw.dao.model.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class User {
+    public User(Long id, String status,String name, LocalDateTime registration_date,Integer number_of_questions,Integer number_of_answers) {
+        this.id = id;
+        this.status = status;
+        this.name = name;
+        this.registration_date = registration_date;
+        this.number_of_questions = number_of_questions;
+        this.number_of_answers = number_of_answers;
+    }
+    public User(Long id, String status,String name, String password, LocalDateTime registration_date,Integer number_of_questions,Integer number_of_answers) {
+        this.id = id;
+        this.status = status;
+        this.name = name;
+        this.password = password;
+        this.registration_date = registration_date;
+        this.number_of_questions = number_of_questions;
+        this.number_of_answers = number_of_answers;
+    }
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String status;
     private String name;
     private String password;
-    private LocalDate registration_date;
+    private LocalDateTime registration_date;
     private Integer number_of_questions;
     private Integer number_of_answers;
+
+    public User() {}
 
     public Long getId() {
         return id;
@@ -47,11 +66,11 @@ public class User {
         this.password = password;
     }
 
-    public LocalDate getRegistration_date() {
+    public LocalDateTime getRegistration_date() {
         return registration_date;
     }
 
-    public void setRegistration_date(LocalDate registration_date) {
+    public void setRegistration_date(LocalDateTime registration_date) {
         this.registration_date = registration_date;
     }
 

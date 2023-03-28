@@ -5,9 +5,11 @@ import com.codecool.stackoverflowtw.dao.model.question.Question;
 import com.codecool.stackoverflowtw.dao.model.question.QuestionsDAO;
 import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
+import com.codecool.stackoverflowtw.dao.model.question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,15 +24,13 @@ public class QuestionService {
     }
 
     public List<QuestionDTO> getAllQuestions() {
-        // TODO:
         return questionsDAO.getAllQuestion()
-                .stream()
-                .map(QuestionDTO::new)
-                .toList();
+                           .stream()
+                           .map(QuestionDTO::new)
+                           .toList();
     }
 
     public Optional<QuestionDTO> getQuestionById(int id) {
-        // TODO
         Optional<Question> question = questionsDAO.findQuestionById(id);
         return question.map(QuestionDTO::new);
     }
@@ -42,8 +42,6 @@ public class QuestionService {
 
     public int addNewQuestion(NewQuestionDTO question) {
         // TODo
-        int createdId = questionsDAO.addQuestion(question);
-        System.out.println(createdId);
-        return createdId;
+        return questionsDAO.addQuestion(new NewQuestionDTO("asd"));
     }
 }
