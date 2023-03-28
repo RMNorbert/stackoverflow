@@ -1,7 +1,7 @@
 package com.codecool.stackoverflowtw.dao.model.answer;
 
 import com.codecool.stackoverflowtw.controller.dto.answer.AnswerDTO;
-import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
+import com.codecool.stackoverflowtw.controller.dto.answer.NewAnswerDTO;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -73,13 +73,12 @@ public class AnswersDaoJdbc implements AnswerDAO {
     }*/
 
     @Override
-    public int addAnswer(NewQuestionDTO questionDTO) {
-        String sql = "INSERT INTO question(title,description,created) values (?,?,?)";
+    public int addAnswer(NewAnswerDTO answerDTO) {
+        String sql = "INSERT INTO question(description,created) values (?,?)";
 
         try (Connection c = jdbcTemplate.getDataSource().getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, questionDTO.title());
-            ps.setString(2, null);
-            ps.setString(3, LocalDateTime.now().toString());
+            ps.setString(1, answerDTO.description());
+            ps.setString(2, LocalDateTime.now().toString());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -95,3 +94,16 @@ public class AnswersDaoJdbc implements AnswerDAO {
         }
 
     }
+
+    @Override
+    public boolean deleteAnswerById(int theId) {
+        int delete = jdbcTemplate.update("delete from answer where answer_id = ?", theId);
+        return delete == 1;
+    }
+
+    @Override
+    public void update(AnswerDTO answerDTO, int id) {
+        String sql = "UPDATE answer set title = ? , description = ? WHERE question_id =" + id;
+        // jdbcTemplate.update(sql, questionDTO.title(),questionDTO.description());
+    }
+}
