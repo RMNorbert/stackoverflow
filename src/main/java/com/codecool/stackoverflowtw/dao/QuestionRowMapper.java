@@ -1,7 +1,5 @@
 package com.codecool.stackoverflowtw.dao;
 
-import com.codecool.stackoverflowtw.dao.model.Question;
-import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 import com.codecool.stackoverflowtw.dao.model.question.Question;
 import org.springframework.jdbc.core.RowMapper;
 

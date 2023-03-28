@@ -1,4 +1,4 @@
-package com.codecool.stackoverflowtw.dao.model;
+package com.codecool.stackoverflowtw.dao.model.question;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
