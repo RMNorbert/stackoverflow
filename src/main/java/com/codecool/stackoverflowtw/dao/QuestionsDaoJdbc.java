@@ -4,12 +4,9 @@ package com.codecool.stackoverflowtw.dao;
 import com.codecool.stackoverflowtw.controller.dto.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.QuestionDTO;
 import com.codecool.stackoverflowtw.dao.model.Question;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -28,17 +25,18 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public List<QuestionDTO> getAllQuestion() {
+    public List<Question> getAllQuestion() {
         String sql = "SELECT question_id, title, description, created from question";
 
-        return jdbcTemplate.query(sql, new QuestionDTORowMapper());
+        return jdbcTemplate.query(sql, new QuestionRowMapper());
     }
 
+    
     @Override
-    public Optional<QuestionDTO> findQuestionById(int id) {
+    public Optional<Question> findQuestionById(int id) {
         String sql = "SELECT question_id,title,description, created FROM question WHERE question_id = ?";
 
-        return jdbcTemplate.query(sql, new QuestionDTORowMapper(), id)
+        return jdbcTemplate.query(sql, new QuestionRowMapper(), id)
                 .stream()
                 .findFirst();
     }

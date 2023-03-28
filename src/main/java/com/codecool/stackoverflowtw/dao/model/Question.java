@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Question {
 
+
     public Question(Integer question_id, String title, String description, LocalDateTime created) {
         this.question_id = question_id;
         this.title = title;
@@ -23,6 +24,11 @@ public class Question {
     private String title;
     private String description;
     private LocalDateTime created;
+
+    public Question() {
+
+    }
+
     public Integer getQuestion_id() {
         return question_id;
     }

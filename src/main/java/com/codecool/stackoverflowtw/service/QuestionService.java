@@ -3,10 +3,11 @@ package com.codecool.stackoverflowtw.service;
 import com.codecool.stackoverflowtw.dao.QuestionsDAO;
 import com.codecool.stackoverflowtw.controller.dto.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.QuestionDTO;
+import com.codecool.stackoverflowtw.dao.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,13 +23,16 @@ public class QuestionService {
 
     public List<QuestionDTO> getAllQuestions() {
         // TODO:
-        return questionsDAO.getAllQuestion();
+        return questionsDAO.getAllQuestion()
+                .stream()
+                .map(QuestionDTO::new)
+                .toList();
     }
 
     public Optional<QuestionDTO> getQuestionById(int id) {
         // TODO
-        questionsDAO.sayHi();
-        return questionsDAO.findQuestionById(id);
+        Optional<Question> question = questionsDAO.findQuestionById(id);
+        return question.map(QuestionDTO::new);
     }
 
     public boolean deleteQuestionById(int id) {
