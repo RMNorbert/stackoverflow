@@ -3,6 +3,7 @@ package com.codecool.stackoverflowtw.dao.model.question;
 
 import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
+import com.codecool.stackoverflowtw.dao.QuestionDTORowMapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,15 +22,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    RowMapper<Question> rowMapper = (rs, rowNum) -> {
-        Question question = new Question();
-        question.setQuestion_id(rs.getInt("question_id"));
-        question.setTitle(rs.getString("title"));
-        question.setDescription(rs.getString("description"));
-        question.setCreated(rs.getTimestamp("created").toLocalDateTime());
-        return question;
-    };
-
     @Override
     public void sayHi() {
         System.out.println("Hi DAO!");
@@ -38,66 +30,25 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     @Override
     public List<QuestionDTO> getAllQuestion() {
         String sql = "SELECT question_id, title, description, created from question";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            Question question = new Question();
-            question.setQuestion_id(rs.getInt("question_id"));
-            question.setTitle(rs.getString("title"));
-            question.setDescription(rs.getString("description"));
-            question.setCreated(rs.getTimestamp("created").toLocalDateTime());
-            QuestionDTO questionDTO = new QuestionDTO(question);
-            return questionDTO;
-        });
+
+        return jdbcTemplate.query(sql, new QuestionDTORowMapper());
     }
 
     @Override
     public Optional<QuestionDTO> findQuestionById(int id) {
         String sql = "SELECT question_id,title,description, created FROM question WHERE question_id = ?";
-        QuestionDTO questionDTO = null;
-        Question question = null;
-        try {
-            question = jdbcTemplate.queryForObject(sql, new Object[]{id}, rowMapper);
-            questionDTO = new QuestionDTO(question);
-        } catch (DataAccessException ex) {
-            System.out.println("Question not found: " + id);
-        }
-        return Optional.ofNullable(questionDTO);
+
+        return jdbcTemplate.query(sql, new QuestionDTORowMapper(), id)
+                .stream()
+                .findFirst();
     }
 
-   /* @Override
-    public int addQuestion(NewQuestionDTO questionDTO) {
-        String sql = "INSERT INTO question(title,description,created) values (?,?,?)";
-        int insert = jdbcTemplate.update(sql,questionDTO.title(),null, LocalDateTime.now());
-    //TODO:
-        RowMapper<Integer> countRowMapper = (rs, rowNum) -> {
-            return rs.getInt("lastId");
-        };
-        String id = "SELECT MAX(question_id) as lastId from question";
-        return jdbcTemplate.query(id,countRowMapper).get(0);
-
-    }*/
 
     @Override
     public int addQuestion(NewQuestionDTO questionDTO) {
         String sql = "INSERT INTO question(title,description,created) values (?,?,?)";
 
-        try (Connection c = jdbcTemplate.getDataSource().getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, questionDTO.title());
-            ps.setString(2, null);
-            ps.setString(3, LocalDateTime.now().toString());
-            ps.executeUpdate();
-
-            ResultSet rs = ps.getGeneratedKeys();
-            int generatedKey = 0;
-            if (rs.next()) {
-                generatedKey = rs.getInt(1);
-            }
-
-            return generatedKey;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
+        return jdbcTemplate.update(sql, questionDTO.title(), null, LocalDateTime.now());
     }
 
     @Override
