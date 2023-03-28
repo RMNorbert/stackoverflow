@@ -6,6 +6,7 @@ import com.codecool.stackoverflowtw.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("questions")
@@ -22,10 +23,10 @@ public class QuestionController {
         return questionService.getAllQuestions();
     }
 
-   /* @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public Optional<QuestionDTO> getQuestionById(@PathVariable int id) {
         return questionService.getQuestionById(id);
-    }*/
+    }
 
     @PostMapping("/")
     public int addNewQuestion(@RequestBody NewQuestionDTO question) {
