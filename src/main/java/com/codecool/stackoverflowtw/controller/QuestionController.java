@@ -18,6 +18,7 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
+    @CrossOrigin
     @GetMapping("/all")
     public List<QuestionDTO> getAllQuestions() {
         return questionService.getAllQuestions();
