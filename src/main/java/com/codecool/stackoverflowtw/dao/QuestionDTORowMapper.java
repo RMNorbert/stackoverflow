@@ -12,6 +12,6 @@ public class QuestionDTORowMapper implements RowMapper<QuestionDTO> {
     @Override
     public QuestionDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new QuestionDTO(new Question(rs.getInt("question_id"), rs.getString("title"),
-                rs.getString("description"), LocalDateTime.parse(rs.getString("created"))));
+                rs.getString("description"), rs.getTimestamp("created").toLocalDateTime()));
     }
 }

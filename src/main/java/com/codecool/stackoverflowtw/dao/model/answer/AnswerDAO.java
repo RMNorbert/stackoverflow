@@ -9,9 +9,9 @@ import java.util.Optional;
 public interface AnswerDAO {
     void sayHi();
 
-    List<AnswerDTO> getAllAnswers();
+    List<Answer> getAllAnswers();
 
-    Optional<AnswerDTO> findAnswerById(int id);
+    Optional<Answer> findAnswerById(int id);
 
     int addAnswer(NewAnswerDTO answer);
 

@@ -35,7 +35,7 @@ public class AnswersDaoJdbc implements AnswerDAO {
     }
 
     @Override
-    public List<AnswerDTO> getAllAnswers() {
+    public List<Answer> getAllAnswers() {
         String sql = "SELECT answer_id, question_id, description, created from answer";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Answer answer = new Answer();
@@ -43,22 +43,21 @@ public class AnswersDaoJdbc implements AnswerDAO {
             answer.setQuestion_id(rs.getInt("question_id"));
             answer.setDescription(rs.getString("description"));
             answer.setCreated(rs.getTimestamp("created").toLocalDateTime());
-            return new AnswerDTO(answer);
+            return answer;
         });
     }
 
     @Override
-    public Optional<AnswerDTO> findAnswerById(int id) {
+    public Optional<Answer> findAnswerById(int id) {
         String sql = "SELECT * FROM answer WHERE answer_id = ?";
         AnswerDTO answerDTO = null;
-        Answer answer;
+        Answer answer = null;
         try {
             answer = jdbcTemplate.queryForObject(sql, new Object[]{id}, rowMapper);
-            answerDTO = new AnswerDTO(answer);
         } catch (DataAccessException ex) {
             System.out.println("Question not found: " + id);
         }
-        return Optional.ofNullable(answerDTO);
+        return Optional.ofNullable(answer);
     }
 
    /* @Override
