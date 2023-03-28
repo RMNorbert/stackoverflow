@@ -1,9 +1,8 @@
-package com.codecool.stackoverflowtw.dao;
+package com.codecool.stackoverflowtw.dao.model.question;
 
 
-import com.codecool.stackoverflowtw.controller.dto.NewQuestionDTO;
-import com.codecool.stackoverflowtw.controller.dto.QuestionDTO;
-import com.codecool.stackoverflowtw.dao.model.Question;
+import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
+import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,18 +16,20 @@ import java.util.Optional;
 @Component
 public class QuestionsDaoJdbc implements QuestionsDAO {
     private final JdbcTemplate jdbcTemplate;
+
     public QuestionsDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     RowMapper<Question> rowMapper = (rs, rowNum) -> {
-         Question question = new Question();
-              question.setQuestion_id(rs.getInt("question_id"));
-              question.setTitle(rs.getString("title"));
-              question.setDescription( rs.getString("description"));
-              question.setCreated( rs.getTimestamp ("created").toLocalDateTime());
+        Question question = new Question();
+        question.setQuestion_id(rs.getInt("question_id"));
+        question.setTitle(rs.getString("title"));
+        question.setDescription(rs.getString("description"));
+        question.setCreated(rs.getTimestamp("created").toLocalDateTime());
         return question;
     };
+
     @Override
     public void sayHi() {
         System.out.println("Hi DAO!");
@@ -37,7 +38,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     @Override
     public List<QuestionDTO> getAllQuestion() {
         String sql = "SELECT question_id, title, description, created from question";
-        return jdbcTemplate.query(sql,(rs, rowNum) -> {
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Question question = new Question();
             question.setQuestion_id(rs.getInt("question_id"));
             question.setTitle(rs.getString("title"));
@@ -54,9 +55,9 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         QuestionDTO questionDTO = null;
         Question question = null;
         try {
-            question = jdbcTemplate.queryForObject(sql,new Object[]{id},rowMapper);
+            question = jdbcTemplate.queryForObject(sql, new Object[]{id}, rowMapper);
             questionDTO = new QuestionDTO(question);
-        }catch (DataAccessException ex){
+        } catch (DataAccessException ex) {
             System.out.println("Question not found: " + id);
         }
         return Optional.ofNullable(questionDTO);
@@ -79,8 +80,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     public int addQuestion(NewQuestionDTO questionDTO) {
         String sql = "INSERT INTO question(title,description,created) values (?,?,?)";
 
-        try (Connection c = jdbcTemplate.getDataSource().getConnection();
-             PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection c = jdbcTemplate.getDataSource().getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, questionDTO.title());
             ps.setString(2, null);
             ps.setString(3, LocalDateTime.now().toString());
@@ -94,20 +94,21 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
             return generatedKey;
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
 
     }
+
     @Override
     public boolean deleteQuestionById(int theId) {
-       int delete = jdbcTemplate.update("delete from question where question_id = ?",theId);
+        int delete = jdbcTemplate.update("delete from question where question_id = ?", theId);
         return delete == 1;
     }
 
     @Override
     public void update(QuestionDTO questionDTO, int id) {
         String sql = "UPDATE question set title = ? , description = ? WHERE question_id =" + id;
-       // jdbcTemplate.update(sql, questionDTO.title(),questionDTO.description());
+        // jdbcTemplate.update(sql, questionDTO.title(),questionDTO.description());
     }
 }
