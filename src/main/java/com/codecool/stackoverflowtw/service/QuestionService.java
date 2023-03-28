@@ -22,13 +22,13 @@ public class QuestionService {
     }
 
     public List<QuestionDTO> getAllQuestions() {
-        List<QuestionDTO> questionDTOS = new ArrayList<>();
-        questionsDAO.getAllQuestion().forEach(question -> questionDTOS.add(new QuestionDTO(question)));
-        return questionDTOS;
+        return questionsDAO.getAllQuestion()
+                           .stream()
+                           .map(QuestionDTO::new)
+                           .toList();
     }
 
     public Optional<QuestionDTO> getQuestionById(int id) {
-        // TODO
         Optional<Question> question = questionsDAO.findQuestionById(id);
         return question.map(QuestionDTO::new);
     }
