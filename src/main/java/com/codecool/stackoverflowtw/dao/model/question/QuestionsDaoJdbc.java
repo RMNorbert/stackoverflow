@@ -1,9 +1,13 @@
-package com.codecool.stackoverflowtw.dao;
+package com.codecool.stackoverflowtw.dao.model.question;
 
 
 import com.codecool.stackoverflowtw.controller.dto.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.QuestionDTO;
 import com.codecool.stackoverflowtw.dao.model.Question;
+import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
+import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
+import com.codecool.stackoverflowtw.dao.QuestionDTORowMapper;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +35,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         return jdbcTemplate.query(sql, new QuestionRowMapper());
     }
 
-    
     @Override
     public Optional<Question> findQuestionById(int id) {
         String sql = "SELECT question_id,title,description, created FROM question WHERE question_id = ?";
@@ -45,7 +48,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     @Override
     public int addQuestion(NewQuestionDTO questionDTO) {
         String sql = "INSERT INTO question(title,description,created) values (?,?,?)";
-        
+
         return jdbcTemplate.update(sql, questionDTO.title(), null, LocalDateTime.now());
     }
 

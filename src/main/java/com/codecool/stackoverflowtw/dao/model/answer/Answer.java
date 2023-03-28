@@ -1,32 +1,27 @@
-package com.codecool.stackoverflowtw.dao.model;
+package com.codecool.stackoverflowtw.dao.model.answer;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 
-
 @Entity
-public class Question {
-
-
-    public Question(Integer question_id, String title, String description, LocalDateTime created) {
-        this.question_id = question_id;
-        this.title = title;
-        this.description = description;
-        this.created = created;
-    }
-
+public class Answer {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer answer_id;
     private Integer question_id;
-    private String title;
     private String description;
     private LocalDateTime created;
 
-    public Question() {
+    public Integer getAnswer_id() {
+        return answer_id;
+    }
 
+    public void setAnswer_id(Integer answer_id) {
+        this.answer_id = answer_id;
     }
 
     public Integer getQuestion_id() {
@@ -35,14 +30,6 @@ public class Question {
 
     public void setQuestion_id(Integer question_id) {
         this.question_id = question_id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getDescription() {
