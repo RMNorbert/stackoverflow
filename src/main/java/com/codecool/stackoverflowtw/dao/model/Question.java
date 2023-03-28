@@ -9,6 +9,14 @@ import java.time.LocalDateTime;
 
 @Entity
 public class Question {
+
+    public Question(Integer question_id, String title, String description, LocalDateTime created) {
+        this.question_id = question_id;
+        this.title = title;
+        this.description = description;
+        this.created = created;
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer question_id;
