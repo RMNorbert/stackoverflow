@@ -13,12 +13,14 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer question_id;
+    private String author;
     private String title;
     private String description;
     private LocalDateTime created;
 
-    public Question(Integer question_id, String title, String description, LocalDateTime created) {
+    public Question(Integer question_id,String author, String title, String description, LocalDateTime created) {
         this.question_id = question_id;
+        this.author = author;
         this.title = title;
         this.description = description;
         this.created = created;
@@ -56,5 +58,13 @@ public class Question {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

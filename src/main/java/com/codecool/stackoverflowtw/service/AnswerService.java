@@ -21,14 +21,12 @@ public class AnswerService {
     }
 
     public List<AnswerDTO> getAllAnswers() {
-        // TODO:
         List<AnswerDTO> answerDTOS = new ArrayList<>();
         answerDAO.getAllAnswers().forEach(answer -> answerDTOS.add(new AnswerDTO(answer)));
         return answerDTOS;
     }
 
     public Optional<AnswerDTO> getAnswerById(int id) {
-        // TODO
         answerDAO.sayHi();
         Optional<Answer> answer = answerDAO.findAnswerById(id);
 

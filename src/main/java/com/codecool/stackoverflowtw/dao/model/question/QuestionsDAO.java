@@ -9,7 +9,8 @@ import java.util.Optional;
 public interface QuestionsDAO {
     List<Question> getAllQuestion();
     Optional<Question> findQuestionById(int id);
-    int addQuestion(NewQuestionDTO question);
+    int addQuestion(NewQuestionDTO question, String author);
+    List<Question> getAllQuestionByAuthor(String author);
     boolean deleteQuestionById(int theId);
     void update(QuestionDTO questionDTO, int id);
 
