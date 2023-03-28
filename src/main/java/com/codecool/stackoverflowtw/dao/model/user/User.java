@@ -36,6 +36,8 @@ public class User {
     private Integer number_of_questions;
     private Integer number_of_answers;
 
+    public User() {}
+
     public Long getId() {
         return id;
     }

@@ -10,6 +10,12 @@ import java.time.LocalDateTime;
 
 @Entity
 public class Question {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer question_id;
+    private String title;
+    private String description;
+    private LocalDateTime created;
 
     public Question(Integer question_id, String title, String description, LocalDateTime created) {
         this.question_id = question_id;
@@ -18,12 +24,7 @@ public class Question {
         this.created = created;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer question_id;
-    private String title;
-    private String description;
-    private LocalDateTime created;
+    public Question() {}
 
     public Integer getQuestion_id() {
         return question_id;
