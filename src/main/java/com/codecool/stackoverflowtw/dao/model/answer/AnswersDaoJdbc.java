@@ -5,12 +5,14 @@ import com.codecool.stackoverflowtw.controller.dto.answer.NewAnswerDTO;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class AnswersDaoJdbc implements AnswerDAO {
     private final JdbcTemplate jdbcTemplate;
 
