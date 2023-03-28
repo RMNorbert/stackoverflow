@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestionService {
@@ -20,24 +21,25 @@ public class QuestionService {
     }
 
     public List<QuestionDTO> getAllQuestions() {
-        // TODO
-        return List.of(new QuestionDTO(1, "example title", "example desc", LocalDateTime.now()));
+        // TODO:
+        return questionsDAO.getAllQuestion();
     }
 
-    public QuestionDTO getQuestionById(int id) {
+    public Optional<QuestionDTO> getQuestionById(int id) {
         // TODO
         questionsDAO.sayHi();
-        return new QuestionDTO(id, "example title", "example desc", LocalDateTime.now());
+        return questionsDAO.findQuestionById(id);
     }
 
     public boolean deleteQuestionById(int id) {
         // TODO
-        return false;
+        return questionsDAO.deleteQuestionById(id);
     }
 
     public int addNewQuestion(NewQuestionDTO question) {
-        // TODO
-        int createdId = 0;
+        // TODo
+        int createdId = questionsDAO.addQuestion(question);
+        System.out.println(createdId);
         return createdId;
     }
 }

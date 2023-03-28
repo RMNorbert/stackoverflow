@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("questions")
@@ -24,13 +25,13 @@ public class QuestionController {
     }
 
     @GetMapping("/{id}")
-    public QuestionDTO getQuestionById(@PathVariable int id) {
-        return null;
+    public Optional<QuestionDTO> getQuestionById(@PathVariable int id) {
+        return questionService.getQuestionById(id);
     }
 
     @PostMapping("/")
     public int addNewQuestion(@RequestBody NewQuestionDTO question) {
-        return 0;
+        return questionService.addNewQuestion(new NewQuestionDTO("question"));
     }
 
     @DeleteMapping("/{id}")
