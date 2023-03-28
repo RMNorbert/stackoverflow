@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("questions")
 public class QuestionController {
     private final QuestionService questionService;
@@ -20,6 +19,7 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
+    @CrossOrigin
     @GetMapping("/all")
     public List<QuestionDTO> getAllQuestions() {
         return questionService.getAllQuestions();
