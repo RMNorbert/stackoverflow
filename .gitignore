@@ -27,6 +27,3 @@ target/
 .idea/
 /mvnw
 /mvnw.cmd
-application.properties
-*application.properties
-*.properties
