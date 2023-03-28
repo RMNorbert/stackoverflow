@@ -26,10 +26,6 @@ public class Question {
     public Question() {}
 
 
-    public Question() {
-
-    }
-
     public Integer getQuestion_id() {
         return question_id;
     }
