@@ -1,12 +1,11 @@
 package com.codecool.stackoverflowtw;
 
-import com.codecool.stackoverflowtw.dao.model.question.QuestionsDAO;
-import com.codecool.stackoverflowtw.dao.model.question.QuestionsDaoJdbc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
+@CrossOrigin(origins = "http://localhost:8080/questions/all")
 public class StackoverflowTwApplication {
     public static void main(String[] args) {
         SpringApplication.run(StackoverflowTwApplication.class, args);
