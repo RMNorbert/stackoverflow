@@ -11,20 +11,19 @@ import java.time.LocalDateTime;
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int answer_id;
-    private int question_id;
+    private Integer answer_id;
+    private Integer question_id;
     private String description;
     private LocalDateTime created;
 
     public Answer() {}
+
     public Answer(Integer answer_id, Integer question_id, String description, LocalDateTime created) {
         this.answer_id = answer_id;
         this.question_id = question_id;
         this.description = description;
         this.created = created;
     }
-
-
 
     public Integer getAnswer_id() {
         return answer_id;

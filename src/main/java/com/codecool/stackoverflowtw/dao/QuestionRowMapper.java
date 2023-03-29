@@ -15,7 +15,7 @@ public class QuestionRowMapper implements RowMapper<Question> {
                 rs.getInt("user_id"),
                 rs.getString("title"),
                 rs.getString("description"),
-                LocalDateTime.parse(rs.getString("created")),
+                rs.getTimestamp("created").toLocalDateTime(),
                 rs.getInt("numberOfAnswers")
         );
     }

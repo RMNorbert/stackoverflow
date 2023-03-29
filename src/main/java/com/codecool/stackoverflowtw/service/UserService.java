@@ -22,8 +22,12 @@ public class UserService {
         return userDAO.getAllUser();
     }
 
-    public Optional<User> logInUser(String username) {
-        Optional<User> user = userDAO.findUserByName(username);
+    public Optional<User> findUserById(int id) {
+        Optional<User> user = userDAO.findUserByName(id);
+        return user;
+    }
+    public Optional<User> logInUser(String username, String password) {
+        Optional<User> user = userDAO.findUser(username, password);
         return user;
     }
 

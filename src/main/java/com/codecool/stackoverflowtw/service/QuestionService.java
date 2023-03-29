@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @Service
 public class QuestionService {
-//    private User user = new User();
     private QuestionsDAO questionsDAO;
 
     @Autowired
