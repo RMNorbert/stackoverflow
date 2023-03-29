@@ -2,6 +2,7 @@ package com.codecool.stackoverflowtw.controller;
 
 import com.codecool.stackoverflowtw.controller.dto.answer.AnswerDTO;
 import com.codecool.stackoverflowtw.controller.dto.answer.NewAnswerDTO;
+import com.codecool.stackoverflowtw.controller.dto.user.NewUserDTO;
 import com.codecool.stackoverflowtw.dao.model.user.User;
 import com.codecool.stackoverflowtw.service.AnswerService;
 import com.codecool.stackoverflowtw.service.UserService;
@@ -30,13 +31,13 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public int addNewUser(@RequestBody String name, String password) {
-        return userService.addUser(name,password);
+    public int addNewUser(@RequestBody NewUserDTO userDTO) {
+        return userService.addUser(userDTO);
     }
     @CrossOrigin
     @GetMapping("/login")
-    public Optional<User> loginUser(@RequestBody String name, String password) {
-        return userService.logInUser(name,password);
+    public Optional<User> loginUser(@RequestBody NewUserDTO userDTO) {
+        return userService.logInUser(userDTO);
     }
     @DeleteMapping("/{id}")
     public boolean deleteUserById(@PathVariable int id) {

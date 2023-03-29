@@ -1,5 +1,6 @@
 package com.codecool.stackoverflowtw.service;
 
+import com.codecool.stackoverflowtw.controller.dto.user.NewUserDTO;
 import com.codecool.stackoverflowtw.dao.model.user.User;
 import com.codecool.stackoverflowtw.dao.model.user.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class UserService {
         Optional<User> user = userDAO.findUserByName(id);
         return user;
     }
-    public Optional<User> logInUser(String username, String password) {
-        Optional<User> user = userDAO.findUser(username, password);
+    public Optional<User> logInUser(NewUserDTO userDTO) {
+        Optional<User> user = userDAO.findUser(userDTO.username(), userDTO.password());
         return user;
     }
 
@@ -35,7 +36,7 @@ public class UserService {
             return userDAO.deleteUserById(id);
     }
 
-    public int addUser(String username, String password) {
-        return userDAO.addUser(username,password);
+    public int addUser(NewUserDTO userDTO) {
+        return userDAO.addUser(userDTO);
     }
 }

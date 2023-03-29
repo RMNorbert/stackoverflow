@@ -8,10 +8,9 @@ export const Login = () => {
     let username = e.target[0].value;
     let password = e.target[1].value;
     //Post request, hogy van-e ilyen felhasznalo
-    let a =[]
     let user = checkAvailableUser(username,password)
-    
-    if (a.length > 0) console.log("This exists");
+
+    if (user) console.log("This exists");
     // navigate("/");
   };
   return (
@@ -43,10 +42,11 @@ export const Login = () => {
 
 const checkAvailableUser = async (username, password) => {
   const response = await fetch("http://127.0.0.1:8080/questions/all", {
-    method: "POST",
+    method: "GET",
     body: JSON.stringify({username, password }),
     mode: "cors",
     headers: { "Content-Type": "application/json" },
   });
   const potentialUser = await response.body();
+  return potentialUser;
 };

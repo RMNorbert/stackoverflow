@@ -1,6 +1,7 @@
 package com.codecool.stackoverflowtw.dao.model.user;
 
 
+import com.codecool.stackoverflowtw.controller.dto.user.NewUserDTO;
 import com.codecool.stackoverflowtw.dao.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -34,16 +35,16 @@ public class UserDaoJdbc implements UserDAO {
 
     @Override
     public Optional<User> findUser(String name, String password) {
-        String sql = "SELECT name, registration_date, number_of_questions, number_of_answers " +
+        String sql = "SELECT name, id, status, password, registration_date, number_of_questions, number_of_answers " +
                 " FROM \"user\" WHERE name = ? AND password = ?";
         return jdbcTemplate.query(sql, new UserRowMapper(), name,password)
                 .stream()
                 .findFirst();
     }
     @Override
-    public int addUser(String username,String password) {
+    public int addUser(NewUserDTO userDTO) {
         String sql = "INSERT INTO \"user\"(name,password,registration_date,number_of_questions,number_of_answers) values (?,?,?,?,?)";
-        return jdbcTemplate.update(sql,username ,password, LocalDateTime.now(),0,0);
+        return jdbcTemplate.update(sql,userDTO.username() ,userDTO.password(), LocalDateTime.now(),0,0);
     }
 
     @Override
