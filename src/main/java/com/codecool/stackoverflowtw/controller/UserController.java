@@ -35,7 +35,7 @@ public class UserController {
         return userService.addUser(userDTO);
     }
     @CrossOrigin
-    @GetMapping("/login")
+    @PutMapping("/login")
     public Optional<User> loginUser(@RequestBody NewUserDTO userDTO) {
         return userService.logInUser(userDTO);
     }

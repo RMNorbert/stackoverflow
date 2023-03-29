@@ -1,23 +1,25 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "./Header";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const handleSubmit = async(e) => {
+  const [invalid, setInvalid] = useState(false);
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let username = e.target[0].value;
     let password = e.target[1].value;
-    //Post request, hogy van-e ilyen felhasznalo
-    let user = checkAvailableUser(username,password)
-
-    if (user) console.log("This exists");
-    // navigate("/");
+    let user = await checkAvailableUser(username, password);
+    if (user) {
+      navigate("/");
+    } else setInvalid(true);
   };
   return (
     <div>
       <Header />
       <div className="flex justify-center flex-col items-center text-2xl ">
         <div>Log in!</div>
+        <div className="text-red-400">{invalid ? "This username/password combo doesn't work" : ""}</div>
         <form
           onSubmit={(e) => {
             handleSubmit(e);
@@ -41,12 +43,12 @@ export const Login = () => {
 };
 
 const checkAvailableUser = async (username, password) => {
-  const response = await fetch("http://127.0.0.1:8080/questions/all", {
-    method: "GET",
-    body: JSON.stringify({username, password }),
+  const response = await fetch("http://127.0.0.1:8080/user/login", {
+    method: "PUT",
+    body: JSON.stringify({ username, password }),
     mode: "cors",
     headers: { "Content-Type": "application/json" },
   });
-  const potentialUser = await response.body();
+  const potentialUser = await response.json();
   return potentialUser;
 };
