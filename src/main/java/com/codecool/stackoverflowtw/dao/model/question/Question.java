@@ -18,7 +18,7 @@ public class Question {
     private LocalDateTime created;
     private int numberOfAnswers;
 
-    public Question(Integer question_id, int user_id, String title, String description, LocalDateTime created) {
+    public Question(Integer question_id, int user_id, String title, String description, LocalDateTime created, int numberOfAnswers) {
         this.question_id = question_id;
         this.user_id = user_id;
         this.title = title;
