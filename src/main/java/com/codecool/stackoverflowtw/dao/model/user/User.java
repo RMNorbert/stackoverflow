@@ -20,7 +20,7 @@ public class User {
         this.number_of_answers = number_of_answers;
     }
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String status;
     private String name;

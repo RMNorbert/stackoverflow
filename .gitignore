@@ -27,4 +27,5 @@ target/
 .idea/
 /mvnw
 /mvnw.cmd
-*.json
+
+node_modules
