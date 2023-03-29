@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import java.time.LocalDateTime;
 
 
@@ -13,20 +12,21 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer question_id;
-    private String author;
+    private int userID;
     private String title;
     private String description;
     private LocalDateTime created;
 
-    public Question(Integer question_id,String author, String title, String description, LocalDateTime created) {
+    public Question(Integer question_id, int userID, String title, String description, LocalDateTime created) {
         this.question_id = question_id;
-        this.author = author;
+        this.userID = userID;
         this.title = title;
         this.description = description;
         this.created = created;
     }
 
     public Question() {}
+
 
     public Integer getQuestion_id() {
         return question_id;
@@ -60,11 +60,11 @@ public class Question {
         this.created = created;
     }
 
-    public String getAuthor() {
-        return author;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 }

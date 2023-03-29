@@ -1,5 +1,7 @@
 package com.codecool.stackoverflowtw.service;
 
+
+import com.codecool.stackoverflowtw.dao.model.question.Question;
 import com.codecool.stackoverflowtw.dao.model.question.QuestionsDAO;
 import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
@@ -14,7 +16,7 @@ import java.util.Optional;
 
 @Service
 public class QuestionService {
-    private User user = new User();
+//    private User user = new User();
     private QuestionsDAO questionsDAO;
 
     @Autowired
@@ -24,9 +26,9 @@ public class QuestionService {
 
     public List<QuestionDTO> getAllQuestions() {
         return questionsDAO.getAllQuestion()
-                           .stream()
-                           .map(QuestionDTO::new)
-                           .toList();
+                .stream()
+                .map(QuestionDTO::new)
+                .toList();
     }
 
     public Optional<QuestionDTO> getQuestionById(int id) {
@@ -35,19 +37,18 @@ public class QuestionService {
     }
 
     public boolean deleteQuestionById(int id) {
-        user.setName("Bethoven");///TODO:
-
-        String authorOfQuestion = String.valueOf(getQuestionById(id).map(questionDTO -> questionDTO.question().getAuthor()));
-        if(user.getName().equals(authorOfQuestion)){
+//        user.setName("Bethoven");///TODO: this check should be at front end
+//
+//        String authorOfQuestion = String.valueOf(getQuestionById(id).map(questionDTO -> questionDTO.question().getAuthor()));
+//        if (user.getName().equals(authorOfQuestion)) {
+//            return questionsDAO.deleteQuestionById(id);
+//        }
+//        return false;
         return questionsDAO.deleteQuestionById(id);
-        }
-        return false;
     }
 
     public int addNewQuestion(NewQuestionDTO question) {
-        user.setName("Bethoven");///TODO:
-
-        return questionsDAO.addQuestion(new NewQuestionDTO("asd"),user.getName());
+        return questionsDAO.addQuestion(new NewQuestionDTO(question.title(), question.description(), question.userID()));
     }
 
 }
