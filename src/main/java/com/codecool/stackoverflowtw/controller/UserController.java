@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
 
@@ -33,13 +33,12 @@ public class UserController {
     public int addNewUser(@RequestBody String name, String password) {
         return userService.addUser(name,password);
     }
-    @PostMapping("/login")
+    @GetMapping("/login")
     public Optional<User> loginUser(@RequestBody String name, String password) {
         return userService.logInUser(name,password);
     }
-
-    /*@DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     public boolean deleteUserById(@PathVariable int id) {
         return userService.deleteUserById(id);
-    }*/
+    }
 }
