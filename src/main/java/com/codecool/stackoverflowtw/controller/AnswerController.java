@@ -20,12 +20,12 @@ public class AnswerController {
     }
 
     @GetMapping("/all")
-    public List<AnswerDTO> getAllQuestions() {
+    public List<AnswerDTO> getAllAnswers() {
         return answerService.getAllAnswers();
     }
 
     @GetMapping("/{id}")
-    public Optional<AnswerDTO> getQuestionById(@PathVariable int id) {
+    public Optional<AnswerDTO> getAnswerById(@PathVariable int id) {
         return answerService.getAnswerById(id);
     }
 
