@@ -5,6 +5,7 @@ import { QuestionList } from "./components/questions/QuestionList";
 
 function App() {
   const [questions, setQuestions] = useState([]);
+  const [user, setUser] = useState(null);
 
   const fetchData = async () => {
     const data = await fetch("http://127.0.0.1:8080/questions/all");
@@ -16,7 +17,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Header />
+      <Header setter={setUser} />
       <QuestionList questionData={questions} />
     </div>
   );
