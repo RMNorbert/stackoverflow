@@ -1,7 +1,6 @@
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { RiUser3Fill } from "react-icons/ri";
-
 export const Header = () => {
   const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,7 +31,8 @@ export const Header = () => {
         {open ? (
           isLoggedIn ? (
             <div>
-              <div>{username}</div>
+            <a href="/user"><div>{username}</div></a>
+              
               <button onClick={handleLogout}>Logout</button>
             </div>
           ) : (

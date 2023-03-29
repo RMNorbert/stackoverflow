@@ -8,7 +8,7 @@ function App() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const handleCreate = () => {
-        navigate('/createQuestion')
+        navigate('/createquestion')
     };
     const fetchData = async () => {
         const data = await fetch("http://127.0.0.1:8080/questions/all");

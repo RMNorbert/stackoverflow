@@ -27,7 +27,7 @@ export const SelectedQuestion = () => {
         );
     else
         return (
-            <div className="">
+            <div>
                 <div className="flex justify-center">
                     <div className="h-64 bg-white my-5 rounded-xl w-2/3 text-black ">
                         <p className="text-5xl">{currentQuestion.title}</p>
