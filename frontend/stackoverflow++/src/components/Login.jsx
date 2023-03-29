@@ -3,12 +3,15 @@ import { Header } from "./Header";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    let user = e.target[0].value
-    let password = e.target[1].value
+    let username = e.target[0].value;
+    let password = e.target[1].value;
     //Post request, hogy van-e ilyen felhasznalo
-    // if(1) setter()
+    let a =[]
+    let user = checkAvailableUser(username,password)
+    
+    if (a.length > 0) console.log("This exists");
     // navigate("/");
   };
   return (
@@ -17,7 +20,9 @@ export const Login = () => {
       <div className="flex justify-center flex-col items-center text-2xl ">
         <div>Log in!</div>
         <form
-          onSubmit={(e)=>{handleSubmit(e)}}
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
           className="flex justify-center flex-col items-center text-black"
         >
           <label htmlFor="name">Username</label>
@@ -25,14 +30,23 @@ export const Login = () => {
           <label htmlFor="">Password</label>
           <input type="password" className="password" />
           <button
-          type="submit"
-          className="bg-buttonBlue m-5 p-2 border-spacing-2 border-black border-4 hover:bg-blue-600"
-        >
-          Log in
-        </button>
+            type="submit"
+            className="bg-buttonBlue m-5 p-2 border-spacing-2 border-black border-4 hover:bg-blue-600"
+          >
+            Log in
+          </button>
         </form>
-        
       </div>
     </div>
   );
+};
+
+const checkAvailableUser = async (username, password) => {
+  const response = await fetch("http://127.0.0.1:8080/questions/all", {
+    method: "POST",
+    body: JSON.stringify({username, password }),
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
+  });
+  const potentialUser = await response.body();
 };

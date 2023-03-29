@@ -33,6 +33,7 @@ public class UserController {
     public int addNewUser(@RequestBody String name, String password) {
         return userService.addUser(name,password);
     }
+    @CrossOrigin
     @GetMapping("/login")
     public Optional<User> loginUser(@RequestBody String name, String password) {
         return userService.logInUser(name,password);
