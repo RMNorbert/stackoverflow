@@ -16,13 +16,15 @@ public class Question {
     private String title;
     private String description;
     private LocalDateTime created;
+    private int numberOfAnswers;
 
-    public Question(Integer question_id, int userID, String title, String description, LocalDateTime created) {
+    public Question(Integer question_id, int userID, String title, String description, LocalDateTime created, int numberOfAnswers) {
         this.question_id = question_id;
         this.userID = userID;
         this.title = title;
         this.description = description;
         this.created = created;
+        this.numberOfAnswers = numberOfAnswers;
     }
 
     public Question() {}
@@ -66,5 +68,13 @@ public class Question {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public int getNumberOfAnswers() {
+        return numberOfAnswers;
+    }
+
+    public void setNumberOfAnswers(int numberOfAnswers) {
+        this.numberOfAnswers = numberOfAnswers;
     }
 }
