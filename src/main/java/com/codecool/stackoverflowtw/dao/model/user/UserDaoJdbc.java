@@ -32,14 +32,14 @@ public class UserDaoJdbc implements UserDAO {
                 .findFirst();
     }
 
-   /* @Override
-    public Optional<User> findUserByName(String name, String password) {
+    @Override
+    public Optional<User> findUser(String name, String password) {
         String sql = "SELECT name, registration_date, number_of_questions, number_of_answers " +
                 " FROM \"user\" WHERE name = ? AND password = ?";
         return jdbcTemplate.query(sql, new UserRowMapper(), name,password)
                 .stream()
                 .findFirst();
-    }*/
+    }
     @Override
     public int addUser(String username,String password) {
         String sql = "INSERT INTO \"user\"(name,password,registration_date,number_of_questions,number_of_answers) values (?,?,?,?,?)";

@@ -6,7 +6,7 @@ import java.util.Optional;
 public interface UserDAO {
     List<User> getAllUser();
     Optional<User> findUserByName(int id);
-    //Optional<User> findUserByName(String userName, String password);
+    Optional<User> findUser(String userName, String password);
     int addUser(String username, String password);
     boolean deleteUserById(int theId);
     void updateNumberOfQuestion(User user, int id);

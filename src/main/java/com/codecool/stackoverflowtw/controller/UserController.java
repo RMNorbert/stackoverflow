@@ -34,8 +34,8 @@ public class UserController {
         return userService.addUser(name,password);
     }
     @PostMapping("/login")
-    public int loginUser(@RequestBody String name, String password) {
-        return userService.addUser(name,password);
+    public Optional<User> loginUser(@RequestBody String name, String password) {
+        return userService.logInUser(name,password);
     }
 
     /*@DeleteMapping("/{id}")

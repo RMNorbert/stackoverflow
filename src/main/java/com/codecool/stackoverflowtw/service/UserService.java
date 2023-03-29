@@ -26,10 +26,10 @@ public class UserService {
         Optional<User> user = userDAO.findUserByName(id);
         return user;
     }
-   /* public Optional<User> logInUser(String username, String password) {
-        Optional<User> user = userDAO.findUserByName(username, password);
+    public Optional<User> logInUser(String username, String password) {
+        Optional<User> user = userDAO.findUser(username, password);
         return user;
-    }*/
+    }
 
     public boolean deleteUserById(int id) {
             return userDAO.deleteUserById(id);
