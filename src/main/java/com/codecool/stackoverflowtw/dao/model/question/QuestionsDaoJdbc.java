@@ -21,7 +21,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     @Override
     public List<Question> getAllQuestion() {
         String sql = "SELECT question_id, author, title, description, created from question";
-
         return jdbcTemplate.query(sql, new QuestionDTORowMapper());
     }
 
