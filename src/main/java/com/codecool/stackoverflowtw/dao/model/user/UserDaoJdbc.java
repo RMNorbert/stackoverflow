@@ -34,10 +34,10 @@ public class UserDaoJdbc implements UserDAO {
     }
 
     @Override
-    public Optional<User> findUser(String name, String password) {
+    public Optional<User> findUser(NewUserDTO userDTO) {
         String sql = "SELECT name, registration_date, number_of_questions, number_of_answers " +
                 " FROM \"user\" WHERE name = ? AND password = ?";
-        return jdbcTemplate.query(sql, new UserRowMapper(), name,password)
+        return jdbcTemplate.query(sql, new UserRowMapper(), userDTO.username(),userDTO.password())
                 .stream()
                 .findFirst();
     }
