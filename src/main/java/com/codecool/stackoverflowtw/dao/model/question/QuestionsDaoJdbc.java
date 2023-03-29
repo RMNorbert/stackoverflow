@@ -6,7 +6,6 @@ import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 
 import com.codecool.stackoverflowtw.dao.QuestionRowMapper;
-import com.codecool.stackoverflowtw.dao.model.QuestionRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
