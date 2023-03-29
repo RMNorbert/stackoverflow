@@ -1,7 +1,6 @@
 package com.codecool.stackoverflowtw.dao.model.user;
 
 
-import com.codecool.stackoverflowtw.dao.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 

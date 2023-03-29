@@ -20,11 +20,14 @@ public class AnswerService {
 
     public List<AnswerDTO> getAllAnswers() {
         // TODO:
-        return answerDAO.getAllAnswers().stream().map(AnswerDTO::new).toList();
+        return answerDAO.getAllAnswers()
+                .stream()
+                .map(AnswerDTO::new)
+                .toList();
     }
 
     public Optional<AnswerDTO> getAnswerById(int id) {
-        answerDAO.sayHi();
+
 // answer = answerDAO.findAnswerById(id)
 //        if (answer.isPresent()) {
 //            return Optional.of(new AnswerDTO(answer.get()));
@@ -33,14 +36,10 @@ public class AnswerService {
     }
 
     public boolean deleteAnswerById(int id) {
-        // TODO
         return answerDAO.deleteAnswerById(id);
     }
 
     public int addNewAnswer(NewAnswerDTO answer) {
-        // TODo
-        int createdId = answerDAO.addAnswer(answer);
-        System.out.println(createdId);
-        return createdId;
+        return answerDAO.addAnswer(answer);
     }
 }
