@@ -24,19 +24,19 @@ public class UserDaoJdbc implements UserDAO {
     }
 
     @Override
-    public Optional<User> findUserById(int id) {
+    public Optional<User> findUserByName(String name) {
         String sql = "SELECT name, registration_date, number_of_questions, number_of_answers " +
-                " FROM user WHERE id = ?";
-        return jdbcTemplate.query(sql, new UserRowMapper(), id)
+                " FROM user WHERE name = ?";
+        return jdbcTemplate.query(sql, new UserRowMapper(), name)
                 .stream()
                 .findFirst();
     }
 
 
     @Override
-    public int addUser(User user) {
+    public int addUser(String username,String password) {
         String sql = "INSERT INTO user(name,password,registration_date,number_of_questions,number_of_answers) values (?,?,?,?,?)";
-        return jdbcTemplate.update(sql,user.getName() ,user.getPassword(), LocalDateTime.now(),0,0);
+        return jdbcTemplate.update(sql,username ,password, LocalDateTime.now(),0,0);
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class QuestionDTORowMapper implements RowMapper<Question> {
     @Override
     public Question mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new Question(rs.getInt("question_id"), rs.getString("title"),
+        return new Question(rs.getInt("question_id"),rs.getString("author"), rs.getString("title"),
                 rs.getString("description"), rs.getTimestamp("created").toLocalDateTime());
     }
 }

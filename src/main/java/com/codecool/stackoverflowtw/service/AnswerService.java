@@ -24,7 +24,6 @@ public class AnswerService {
     }
 
     public Optional<AnswerDTO> getAnswerById(int id) {
-        // TODO
         answerDAO.sayHi();
 // answer = answerDAO.findAnswerById(id)
 //        if (answer.isPresent()) {
