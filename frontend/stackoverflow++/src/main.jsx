@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Register } from "./components/Register";
 import { Login } from "./components/Login";
 import { SelectedQuestion } from "./components/questions/SelectedQuestion";
+import { CreateQuestion } from "./components/questions/CreateQuestion";
+import { Header } from "./components/Header";
 
 const router = createBrowserRouter([
   {
@@ -28,10 +30,17 @@ const router = createBrowserRouter([
     path: "/question/:id",
     element: <SelectedQuestion/>,
   },
+  {
+    path: "/createQuestion",
+    element: <CreateQuestion />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <div>
+    <Header />
     <RouterProvider router={router} />
+    </div>
   </React.StrictMode>
 );

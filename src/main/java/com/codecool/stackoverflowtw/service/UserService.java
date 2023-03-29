@@ -27,13 +27,14 @@ public class UserService {
         Optional<User> user = userDAO.findUserByName(id);
         return user;
     }
+
     public Optional<User> logInUser(NewUserDTO userDTO) {
         Optional<User> user = userDAO.findUser(userDTO.username(), userDTO.password());
         return user;
     }
 
     public boolean deleteUserById(int id) {
-            return userDAO.deleteUserById(id);
+        return userDAO.deleteUserById(id);
     }
 
     public int addUser(NewUserDTO userDTO) {

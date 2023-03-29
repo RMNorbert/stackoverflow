@@ -1,7 +1,6 @@
 import Cookies from "js-cookie";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Header} from "./Header";
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -19,7 +18,6 @@ export const Login = () => {
     };
     return (
         <div>
-            <Header/>
             <div className="flex justify-center flex-col items-center text-2xl ">
                 <div>Log in!</div>
                 <div className="text-red-400">{invalid ? "This username/password combo doesn't work" : ""}</div>

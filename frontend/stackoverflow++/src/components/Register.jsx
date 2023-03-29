@@ -1,5 +1,4 @@
 import {useNavigate} from "react-router-dom";
-import {Header} from "./Header";
 
 export const Register = () => {
     const navigate = useNavigate();
@@ -10,7 +9,6 @@ export const Register = () => {
     };
     return (
         <div>
-            <Header/>
             <div>Register!</div>
             <div className="flex justify-center flex-col items-center text-2xl ">
                 <form
