@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Header } from "./components/Header";
-import { QuestionList } from "./components/QuestionList";
+import { QuestionList } from "./components/questions/QuestionList";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -11,14 +11,13 @@ function App() {
     const dataJSON = await data.json();
     setQuestions(dataJSON);
   };
-
   useEffect(() => {
     fetchData();
   }, []);
-    return (
+  return (
     <div className="App">
       <Header />
-      <QuestionList questionData={questions}/>
+      <QuestionList questionData={questions} />
     </div>
   );
 }
