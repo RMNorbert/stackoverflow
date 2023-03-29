@@ -5,7 +5,6 @@ import {QuestionList} from "./components/questions/QuestionList";
 
 function App() {
     const [questions, setQuestions] = useState([]);
-    const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const handleCreate = () => {
         navigate('/createquestion')
