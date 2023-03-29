@@ -6,6 +6,7 @@ import com.codecool.stackoverflowtw.dao.model.question.QuestionsDAO;
 import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 import com.codecool.stackoverflowtw.dao.model.question.Question;
+import com.codecool.stackoverflowtw.dao.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,6 @@ import java.util.Optional;
 
 @Service
 public class QuestionService {
-
     private QuestionsDAO questionsDAO;
 
     @Autowired
@@ -25,9 +25,9 @@ public class QuestionService {
 
     public List<QuestionDTO> getAllQuestions() {
         return questionsDAO.getAllQuestion()
-                           .stream()
-                           .map(QuestionDTO::new)
-                           .toList();
+                .stream()
+                .map(QuestionDTO::new)
+                .toList();
     }
 
     public Optional<QuestionDTO> getQuestionById(int id) {
@@ -36,12 +36,18 @@ public class QuestionService {
     }
 
     public boolean deleteQuestionById(int id) {
-        // TODO
+//        user.setName("Bethoven");///TODO: this check should be at front end
+//
+//        String authorOfQuestion = String.valueOf(getQuestionById(id).map(questionDTO -> questionDTO.question().getAuthor()));
+//        if (user.getName().equals(authorOfQuestion)) {
+//            return questionsDAO.deleteQuestionById(id);
+//        }
+//        return false;
         return questionsDAO.deleteQuestionById(id);
     }
 
     public int addNewQuestion(NewQuestionDTO question) {
-        // TODo
-        return questionsDAO.addQuestion(new NewQuestionDTO("asd"));
+        return questionsDAO.addQuestion(new NewQuestionDTO(question.title(), question.description(), question.userID()));
     }
+
 }

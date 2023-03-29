@@ -12,15 +12,19 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer question_id;
+    private int user_id;
     private String title;
     private String description;
     private LocalDateTime created;
+    private int numberOfAnswers;
 
-    public Question(Integer question_id, String title, String description, LocalDateTime created) {
+    public Question(Integer question_id, int user_id, String title, String description, LocalDateTime created, int numberOfAnswers) {
         this.question_id = question_id;
+        this.user_id = user_id;
         this.title = title;
         this.description = description;
         this.created = created;
+        this.numberOfAnswers = numberOfAnswers;
     }
 
     public Question() {}
@@ -56,5 +60,21 @@ public class Question {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public int getUserID() {
+        return user_id;
+    }
+
+    public void setUserID(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getNumberOfAnswers() {
+        return numberOfAnswers;
+    }
+
+    public void setNumberOfAnswers(int numberOfAnswers) {
+        this.numberOfAnswers = numberOfAnswers;
     }
 }

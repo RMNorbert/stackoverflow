@@ -12,9 +12,11 @@ public class QuestionRowMapper implements RowMapper<Question> {
     public Question mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Question(
                 rs.getInt("question_id"),
+                rs.getInt("user_id"),
                 rs.getString("title"),
                 rs.getString("description"),
-                LocalDateTime.parse(rs.getString("created"))
+                rs.getTimestamp("created").toLocalDateTime(),
+                rs.getInt("numberOfAnswers")
         );
     }
 }

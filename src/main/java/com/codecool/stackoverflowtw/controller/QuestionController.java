@@ -12,12 +12,12 @@ import java.util.Optional;
 @RequestMapping("questions")
 public class QuestionController {
     private final QuestionService questionService;
-
     @Autowired
     public QuestionController(QuestionService questionService) {
         this.questionService = questionService;
     }
 
+    @CrossOrigin
     @GetMapping("/all")
     public List<QuestionDTO> getAllQuestions() {
         return questionService.getAllQuestions();
