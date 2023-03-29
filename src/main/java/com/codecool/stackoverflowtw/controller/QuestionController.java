@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("questions")
 public class QuestionController {
     private final QuestionService questionService;
@@ -22,7 +23,7 @@ public class QuestionController {
     public List<QuestionDTO> getAllQuestions() {
         return questionService.getAllQuestions();
     }
-
+    @CrossOrigin
     @GetMapping("/{id}")
     public Optional<QuestionDTO> getQuestionById(@PathVariable int id) {
         return questionService.getQuestionById(id);
