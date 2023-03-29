@@ -4,13 +4,13 @@ import com.codecool.stackoverflowtw.controller.dto.answer.AnswerDTO;
 import com.codecool.stackoverflowtw.controller.dto.answer.NewAnswerDTO;
 import com.codecool.stackoverflowtw.dao.AnswerRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Repository
 public class AnswersDaoJdbc implements AnswerDAO {
     private final JdbcTemplate jdbcTemplate;
 
@@ -32,15 +32,13 @@ public class AnswersDaoJdbc implements AnswerDAO {
     @Override
     public Optional<Answer> findAnswerById(int id) {
         String sql = "SELECT * FROM answer WHERE answer_id = ?";
-        return jdbcTemplate.query(sql, new AnswerRowMapper())
-                .stream()
-                .findFirst();
+        return jdbcTemplate.query(sql, new AnswerRowMapper()).stream().findFirst();
     }
 
     @Override
     public int addAnswer(NewAnswerDTO answerDTO) {
         String sql = "INSERT INTO question(description,created) values (?,?)";
-        return jdbcTemplate.update(sql, answerDTO.description(),LocalDateTime.now().toString());
+        return jdbcTemplate.update(sql, answerDTO.description(), LocalDateTime.now().toString());
     }
 
     @Override
@@ -52,6 +50,6 @@ public class AnswersDaoJdbc implements AnswerDAO {
     @Override
     public void update(AnswerDTO answerDTO, int id) {
         String sql = "UPDATE answer set description = ? WHERE question_id =" + id;
-         jdbcTemplate.update(sql, answerDTO.answer().getDescription());
+        jdbcTemplate.update(sql, answerDTO.answer().getDescription());
     }
 }
