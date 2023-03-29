@@ -1,6 +1,7 @@
 package com.codecool.stackoverflowtw.dao.model.user;
 
 
+import com.codecool.stackoverflowtw.dao.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ public class UserDaoJdbc implements UserDAO {
     }
     @Override
     public List<User> getAllUser() {
-        String sql = "SELECT id, status, name, registration_date,number_of_questions,number_of_answers" +
+        String sql = "SELECT id,password, status, name, registration_date,number_of_questions,number_of_answers" +
                 " FROM \"user\"";
         return jdbcTemplate.query(sql, new UserRowMapper());
     }

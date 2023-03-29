@@ -33,6 +33,10 @@ public class UserController {
     public int addNewUser(@RequestBody String name, String password) {
         return userService.addUser(name,password);
     }
+    @PostMapping("/login")
+    public int loginUser(@RequestBody String name, String password) {
+        return userService.addUser(name,password);
+    }
 
     /*@DeleteMapping("/{id}")
     public boolean deleteUserById(@PathVariable int id) {

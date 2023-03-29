@@ -23,6 +23,8 @@ public class Answer {
         this.created = created;
     }
 
+    public Answer() {}
+
     public Integer getAnswer_id() {
         return answer_id;
     }

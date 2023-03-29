@@ -5,7 +5,6 @@ import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 
 import com.codecool.stackoverflowtw.dao.QuestionRowMapper;
-import com.codecool.stackoverflowtw.dao.model.QuestionRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -22,14 +21,14 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
     @Override
     public List<Question> getAllQuestion() {
-        String sql = "SELECT question_id, author, title, description, created from question";
+        String sql = "SELECT question_id, user_id, title, description, created from question";
 
         return jdbcTemplate.query(sql, new QuestionRowMapper());
     }
 
     @Override
     public Optional<Question> findQuestionById(int id) {
-        String sql = "SELECT question_id,author, title,description, created FROM question WHERE question_id = ?";
+        String sql = "SELECT question_id,user_id, title,description, created FROM question WHERE question_id = ?";
 
         return jdbcTemplate.query(sql, new QuestionRowMapper(), id)
                 .stream()
@@ -37,12 +36,12 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
     @Override
     public List<Question> getAllQuestionByUserID(int userID) {
-        String sql = "SELECT question_id, author, title, description, created from question WHERE user_id = ?";
+        String sql = "SELECT question_id, user_id, title, description, created from question WHERE user_id = ?";
         return jdbcTemplate.query(sql, new QuestionRowMapper(),userID);
     }
     @Override
     public int addQuestion(NewQuestionDTO questionDTO) {
-        String sql = "INSERT INTO question(author,title,description,created) values (?,?,?)";
+        String sql = "INSERT INTO question(user_id,title,description,created) values (?,?,?)";
 
         return jdbcTemplate.update(sql,questionDTO.userID(), questionDTO.title(), questionDTO.description(), LocalDateTime.now());
     }
