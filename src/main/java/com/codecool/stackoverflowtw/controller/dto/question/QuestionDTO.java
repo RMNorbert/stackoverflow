@@ -26,6 +26,17 @@ public class QuestionDTO {
         this.numberOfAnswers = numberOfAnswers;
     }
 
+    public static QuestionDTO of(Question question) {
+        return new QuestionDTO(
+                question.getQuestion_id(),
+                question.getUserID(),
+                question.getTitle(),
+                question.getDescription(),
+                question.getCreated(),
+                question.getNumberOfAnswers()
+        );
+    }
+
     public Integer getQuestion_id() {
         return question_id;
     }
@@ -48,17 +59,6 @@ public class QuestionDTO {
 
     public int getNumberOfAnswers() {
         return numberOfAnswers;
-    }
-
-    public static QuestionDTO of(Question question) {
-        return new QuestionDTO(
-                question.getQuestion_id(),
-                question.getUserID(),
-                question.getTitle(),
-                question.getDescription(),
-                question.getCreated(),
-                question.getNumberOfAnswers()
-        );
     }
 
 }
