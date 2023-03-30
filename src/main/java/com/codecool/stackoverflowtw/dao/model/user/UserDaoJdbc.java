@@ -47,6 +47,7 @@ public class UserDaoJdbc implements UserDAO {
         return jdbcTemplate.update(sql,userDTO.username() ,userDTO.password(), LocalDateTime.now(),0,0);
     }
 
+
     @Override
     public boolean deleteUserById(int theId) {
        int delete = jdbcTemplate.update("delete from \"user\" where id = ?",theId);
