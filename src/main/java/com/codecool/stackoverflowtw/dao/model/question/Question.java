@@ -1,16 +1,10 @@
 package com.codecool.stackoverflowtw.dao.model.question;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 
 
-@Entity
 public class Question {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer question_id;
     private int user_id;
     private String title;

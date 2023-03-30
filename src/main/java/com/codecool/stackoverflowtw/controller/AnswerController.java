@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("answers")
 public class AnswerController {
     private final AnswerService answerService;
@@ -20,18 +21,24 @@ public class AnswerController {
     }
 
     @GetMapping("/all")
-    public List<AnswerDTO> getAllQuestions() {
+    public List<AnswerDTO> getAllAnswers() {
         return answerService.getAllAnswers();
     }
 
     @GetMapping("/{id}")
-    public Optional<AnswerDTO> getQuestionById(@PathVariable int id) {
+    public Optional<AnswerDTO> getAnswerById(@PathVariable int id) {
         return answerService.getAnswerById(id);
+    }
+    @CrossOrigin
+    @GetMapping("/q/{id}")
+    public List<AnswerDTO> getAllAnswersByQuestionId(@PathVariable int id){
+        return answerService.getAllAnswersByQuestionId(id);
     }
 
     @PostMapping("/")
     public int addNewAnswer(@RequestBody NewAnswerDTO answerDTO) {
-        return answerService.addNewAnswer(new NewAnswerDTO("answer"));
+        System.out.println(answerDTO.questionID());
+        return answerService.addNewAnswer(answerDTO);
     }
 
     @DeleteMapping("/{id}")

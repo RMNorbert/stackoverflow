@@ -22,18 +22,20 @@ public class AnswerService {
         // TODO:
         return answerDAO.getAllAnswers()
                 .stream()
-                .map(AnswerDTO::new)
+                .map(AnswerDTO::of)
                 .toList();
     }
 
     public Optional<AnswerDTO> getAnswerById(int id) {
-
-// answer = answerDAO.findAnswerById(id)
-//        if (answer.isPresent()) {
-//            return Optional.of(new AnswerDTO(answer.get()));
-//        } else return Optional.empty();
-        return answerDAO.findAnswerById(id).map(AnswerDTO::new); //apparently the same as above
+        return answerDAO.findAnswerById(id).map(AnswerDTO::of);
     }
+    public List<AnswerDTO> getAllAnswersByQuestionId(int id){
+        return answerDAO.getAllAnswersByQuestionId(id)
+                .stream()
+                .map(AnswerDTO::of)
+                .toList();
+    }
+
 
     public boolean deleteAnswerById(int id) {
         return answerDAO.deleteAnswerById(id);
