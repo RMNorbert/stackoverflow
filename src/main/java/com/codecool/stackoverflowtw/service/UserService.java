@@ -34,7 +34,6 @@ public class UserService {
     public Optional<User> logInUser(NewUserDTO userDTO) {
         return userDAO.findUser(userDTO);
     }
-
     public boolean deleteUserById(int id) {
         return userDAO.deleteUserById(id);
     }

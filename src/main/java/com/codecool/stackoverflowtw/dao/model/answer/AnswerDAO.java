@@ -12,6 +12,7 @@ public interface AnswerDAO {
     List<Answer> getAllAnswers();
 
     Optional<Answer> findAnswerById(int id);
+    List<Answer> getAllAnswersByQuestionId(int id);
 
     int addAnswer(NewAnswerDTO answer);
 

@@ -34,6 +34,13 @@ public class AnswerService {
 //        } else return Optional.empty();
         return answerDAO.findAnswerById(id).map(AnswerDTO::new); //apparently the same as above
     }
+    public List<AnswerDTO> getAllAnswersByQuestionId(int id){
+        return answerDAO.getAllAnswersByQuestionId(id)
+                .stream()
+                .map(AnswerDTO::new)
+                .toList();
+    }
+
 
     public boolean deleteAnswerById(int id) {
         return answerDAO.deleteAnswerById(id);

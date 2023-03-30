@@ -36,6 +36,14 @@ public class AnswersDaoJdbc implements AnswerDAO {
     }
 
     @Override
+    public List<Answer> getAllAnswersByQuestionId(int id) {
+        String sql = "SELECT answer_id, q.question_id, answer.description, answer.created " +
+                " from answer LEFT OUTER JOIN question q ON answer.question_id = q.question_id";
+        return jdbcTemplate.query(sql, new AnswerRowMapper());
+    }
+
+
+    @Override
     public int addAnswer(NewAnswerDTO answerDTO) {
         String sql = "INSERT INTO question(description,created) values (?,?)";
         return jdbcTemplate.update(sql, answerDTO.description(), LocalDateTime.now().toString());

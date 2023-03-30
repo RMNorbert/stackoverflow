@@ -28,6 +28,10 @@ public class AnswerController {
     public Optional<AnswerDTO> getAnswerById(@PathVariable int id) {
         return answerService.getAnswerById(id);
     }
+    @GetMapping("/q/{id}")
+    public List<AnswerDTO> getAllAnswersByQuestionId(@PathVariable int id){
+        return answerService.getAllAnswersByQuestionId(id);
+    }
 
     @PostMapping("/")
     public int addNewAnswer(@RequestBody NewAnswerDTO answerDTO) {
