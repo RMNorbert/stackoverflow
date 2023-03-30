@@ -1,7 +1,7 @@
 package com.codecool.stackoverflowtw.dao.model.user;
 
-
 import java.time.LocalDateTime;
+
 
 public class User {
 
@@ -14,7 +14,6 @@ public class User {
         this.number_of_questions = number_of_questions;
         this.number_of_answers = number_of_answers;
     }
-
     private int id;
     private String status;
     private String name;

@@ -1,10 +1,10 @@
 package com.codecool.stackoverflowtw.dao.model.question;
 
+
 import java.time.LocalDateTime;
 
 
 public class Question {
-
     private Integer question_id;
     private int user_id;
     private String title;
@@ -21,8 +21,7 @@ public class Question {
         this.numberOfAnswers = numberOfAnswers;
     }
 
-    public Question() {
-    }
+    public Question() {}
 
 
     public Integer getQuestion_id() {

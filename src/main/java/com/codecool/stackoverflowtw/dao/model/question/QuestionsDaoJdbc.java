@@ -4,9 +4,9 @@ package com.codecool.stackoverflowtw.dao.model.question;
 import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 import com.codecool.stackoverflowtw.dao.QuestionRowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,7 +19,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     public QuestionsDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
     @Override
     public List<Question> getAllQuestion() {
         String sql = "SELECT question.question_id, user_id, title, question.description, question.created, COUNT(answer_id) as numberOfAnswers" + " FROM question" + " LEFT JOIN answer a on question.question_id = a.question_id " + "GROUP BY question.question_id";
@@ -29,21 +28,24 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public Optional<Question> findQuestionById(int id) {
-        String sql = "SELECT question.question_id,user_id, title, question.description, question.created, COUNT(answer_id) as numberOfAnswers " + "FROM question" + "    LEFT JOIN answer a on question.question_id = a.question_id " + "WHERE question.question_id = ? " + " GROUP BY question.question_id";
+        String sql = "SELECT question.question_id,user_id, title, question.description, question.created, COUNT(answer_id) as numberOfAnswers " +
+                " FROM question " +
+                "    LEFT JOIN answer a on question.question_id = a.question_id " +
+                " WHERE question.question_id = ? " +
+                " GROUP BY question.question_id ";
 
         return jdbcTemplate.query(sql, new QuestionRowMapper(), id).stream().findFirst();
     }
-
     @Override
     public List<Question> getAllQuestionByUserID(int userID) {
         String sql = "SELECT question_id, user_id, title, description, created from question WHERE user_id = ?";
-        return jdbcTemplate.query(sql, new QuestionRowMapper(), userID);
+        return jdbcTemplate.query(sql, new QuestionRowMapper(),userID);
     }
-
     @Override
-    public int addQuestion(NewQuestionDTO questionDTO) {
-        String sql = "INSERT INTO question(user_id,title,description,created) values (?,?,?,?)";
-        return jdbcTemplate.update(sql, questionDTO.userID(), questionDTO.title(), questionDTO.description(), LocalDateTime.now());
+    public int addQuestion(NewQuestionDTO newQuestionDTO) {
+        String sql = "INSERT INTO question(user_id,title,description,created) values (?,?,?)";
+
+        return jdbcTemplate.update(sql,newQuestionDTO.userID(), newQuestionDTO.title(), newQuestionDTO.description(), LocalDateTime.now());
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 public class QuestionService {
-    private QuestionsDAO questionsDAO;
+    private final QuestionsDAO questionsDAO;
 
     @Autowired
     public QuestionService(QuestionsDAO questionsDAO) {
@@ -30,13 +30,6 @@ public class QuestionService {
     }
 
     public boolean deleteQuestionById(int id) {
-//        user.setName("Bethoven");///TODO: this check should be at front end
-//
-//        String authorOfQuestion = String.valueOf(getQuestionById(id).map(questionDTO -> questionDTO.question().getAuthor()));
-//        if (user.getName().equals(authorOfQuestion)) {
-//            return questionsDAO.deleteQuestionById(id);
-//        }
-//        return false;
         return questionsDAO.deleteQuestionById(id);
     }
 

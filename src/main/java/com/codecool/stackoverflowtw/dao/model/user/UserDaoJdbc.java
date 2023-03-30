@@ -3,14 +3,15 @@ package com.codecool.stackoverflowtw.dao.model.user;
 
 import com.codecool.stackoverflowtw.controller.dto.user.NewUserDTO;
 import com.codecool.stackoverflowtw.dao.UserRowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Repository
 public class UserDaoJdbc implements UserDAO {
     private final JdbcTemplate jdbcTemplate;
 
@@ -26,7 +27,7 @@ public class UserDaoJdbc implements UserDAO {
 
     @Override
     public Optional<User> findUserByName(int id) {
-        String sql = "SELECT id, status,name, registration_date, number_of_questions, number_of_answers " +
+        String sql = "SELECT id,password, status,name, registration_date, number_of_questions, number_of_answers " +
                 " FROM \"user\" WHERE id = ?";
         return jdbcTemplate.query(sql, new UserRowMapper(),id)
                 .stream()
@@ -34,19 +35,18 @@ public class UserDaoJdbc implements UserDAO {
     }
 
     @Override
-    public Optional<User> findUser(NewUserDTO userDTO) {
-        String sql = "SELECT name,id,status, password, registration_date, number_of_questions, number_of_answers " +
+    public Optional<User> findUser(NewUserDTO newUserDTO) {
+        String sql = "SELECT name, id,registration_date, number_of_questions, number_of_answers " +
                 " FROM \"user\" WHERE name = ? AND password = ?";
-        return jdbcTemplate.query(sql, new UserRowMapper(), userDTO.username(),userDTO.password())
+        return jdbcTemplate.query(sql, new UserRowMapper(), newUserDTO.username(),newUserDTO.password())
                 .stream()
                 .findFirst();
     }
     @Override
-    public int addUser(NewUserDTO userDTO) {
+    public int addUser(NewUserDTO newUserDTO) {
         String sql = "INSERT INTO \"user\"(name,password,registration_date,number_of_questions,number_of_answers) values (?,?,?,?,?)";
-        return jdbcTemplate.update(sql,userDTO.username() ,userDTO.password(), LocalDateTime.now(),0,0);
+        return jdbcTemplate.update(sql,newUserDTO.username() ,newUserDTO.password(), LocalDateTime.now(),0,0);
     }
-
 
     @Override
     public boolean deleteUserById(int theId) {

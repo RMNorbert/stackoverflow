@@ -4,9 +4,9 @@ import com.codecool.stackoverflowtw.dao.model.question.Question;
 
 import java.time.LocalDateTime;
 
-public class    QuestionDTO {
-    private Integer question_id;
-    private int user_id;
+public class QuestionDTO {
+    private final Integer question_id;
+    private final int user_id;
     private String title;
     private String description;
     private LocalDateTime created;
