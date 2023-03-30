@@ -12,7 +12,7 @@ export const Login = () => {
         let password = e.target[1].value;
         let user = await checkAvailableUser(username, password);
     
-        if (user) {
+        if (user) { 
             console.log(user);
             Cookies.set("user", username)
             Cookies.set("id", user.id)

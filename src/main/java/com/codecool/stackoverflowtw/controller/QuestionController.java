@@ -35,6 +35,9 @@ public class QuestionController {
     @CrossOrigin
     @PostMapping("/")
     public int addNewQuestion(@RequestBody NewQuestionDTO question) {
+        System.out.println(question.title());
+        System.out.println(question.userID());
+        System.out.println(question.description());
         return questionService.addNewQuestion(question);
     }
 

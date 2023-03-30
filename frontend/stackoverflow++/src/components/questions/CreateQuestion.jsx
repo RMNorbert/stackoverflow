@@ -1,20 +1,30 @@
 import Cookies from "js-cookie";
-
-Cookies.get()
+import { useState } from "react";
 
 export const CreateQuestion = () => {
-  const handleSubmit = async(e)=>{
+  const [userID, setUserID] = useState();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let question = e.target[0].value;
-    let desc = e.target[1].value;
-    await fetch("http://127.0.0.1:8080/questions/",{
+    setUserID(parseInt(Cookies.get("id")));
+    let title = e.target[0].value;
+    let description = e.target[1].value;
+
+    const response = await fetch("http://127.0.0.1:8080/questions/", {
       method: "POST",
-      body: {question,desc}
-    })
-  }
+      body: JSON.stringify({
+        title,
+        description,
+        userID,
+      }),
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await response.json();
+    console.log(data);
+  };
   return (
-    <div>
-      <form onSubmit={(e)=>handleSubmit(e)}>
+    <div className="text-black">
+      <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="question">Question:</label>
         <input type="text" name="question" id="" />
         <label htmlFor="desc">Describe your question</label>

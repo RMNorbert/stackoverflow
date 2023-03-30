@@ -6,6 +6,7 @@ import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 import com.codecool.stackoverflowtw.dao.QuestionRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -41,8 +42,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public int addQuestion(NewQuestionDTO questionDTO) {
-        String sql = "INSERT INTO question(user_id,title,description,created) values (?,?,?)";
-
+        String sql = "INSERT INTO question(user_id,title,description,created) values (?,?,?,?)";
         return jdbcTemplate.update(sql, questionDTO.userID(), questionDTO.title(), questionDTO.description(), LocalDateTime.now());
     }
 
