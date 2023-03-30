@@ -36,4 +36,28 @@ public class QuestionDTO {
                 question.getNumberOfAnswers()
         );
     }
+
+    public Integer getQuestion_id() {
+        return question_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public int getNumberOfAnswers() {
+        return numberOfAnswers;
+    }
 }

@@ -62,6 +62,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     @Override
     public void update(QuestionDTO questionDTO, int id) {
         String sql = "UPDATE question set title = ? , description = ? WHERE question_id =" + id;
-        jdbcTemplate.update(sql, questionDTO.question().getTitle(),questionDTO.question().getDescription());
+        jdbcTemplate.update(sql, questionDTO.getTitle(),questionDTO.getDescription());
     }
 }
