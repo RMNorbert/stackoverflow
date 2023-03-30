@@ -12,7 +12,7 @@ public class UserDTO {
     private int number_of_questions;
     private int number_of_answers;
 
-    public UserDTO(int id, String status, String name, LocalDateTime registration_date, int number_of_questions, int number_of_answers) {
+    private UserDTO(int id, String status, String name, LocalDateTime registration_date, int number_of_questions, int number_of_answers) {
         this.id = id;
         this.status = status;
         this.name = name;
