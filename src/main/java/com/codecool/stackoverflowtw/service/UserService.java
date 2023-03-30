@@ -23,22 +23,28 @@ public class UserService {
     public List<UserDTO> getAllUser() {
         return userDAO.getAllUser()
                 .stream()
-                .map(UserDTO::new)
+                .map(UserDTO::of)
                 .toList();
     }
 
-    public Optional<User> findUserById(int id) {
-        return userDAO.findUserByName(id);
+    public Optional<UserDTO> findUserById(int id) {
+        return convertUserToOptionalDTO(userDAO.findUserByName(id));
+
     }
-    public Optional<User> logInUser(NewUserDTO userDTO) {
-        return userDAO.findUser(userDTO);
+
+    public Optional<UserDTO> logInUser(NewUserDTO userDTO) {
+        return convertUserToOptionalDTO(userDAO.findUser(userDTO));
     }
 
     public boolean deleteUserById(int id) {
-            return userDAO.deleteUserById(id);
+        return userDAO.deleteUserById(id);
     }
 
     public int addUser(NewUserDTO userDTO) {
         return userDAO.addUser(userDTO);
+    }
+
+    private Optional<UserDTO> convertUserToOptionalDTO(Optional<User> userFromDB) {
+        return userFromDB.map(UserDTO::of);
     }
 }

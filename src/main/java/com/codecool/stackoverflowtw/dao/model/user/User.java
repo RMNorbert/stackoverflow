@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class User {
 
-    public User(Long id, String status,String name, String password, LocalDateTime registration_date,Integer number_of_questions,Integer number_of_answers) {
+    public User(int id, String status, String name, String password, LocalDateTime registration_date, Integer number_of_questions, Integer number_of_answers) {
         this.id = id;
         this.status = status;
         this.name = name;
@@ -14,7 +14,7 @@ public class User {
         this.number_of_questions = number_of_questions;
         this.number_of_answers = number_of_answers;
     }
-    private Long id;
+    private int id;
     private String status;
     private String name;
     private String password;
@@ -24,7 +24,7 @@ public class User {
 
     public User() {}
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

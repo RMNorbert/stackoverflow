@@ -26,8 +26,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public Optional<UserDTO> getUserById(@PathVariable int id) {
-        return userService.findUserById(id)
-                .map(UserDTO::new);
+        return userService.findUserById(id);
     }
 
     @PostMapping("/create")
@@ -35,7 +34,7 @@ public class UserController {
         return userService.addUser(userDTO);
     }
     @GetMapping("/login")
-    public Optional<User> loginUser(@RequestBody NewUserDTO userDTO) {
+    public Optional<UserDTO> loginUser(@RequestBody NewUserDTO userDTO) {
         return userService.logInUser(userDTO);
     }
     @DeleteMapping("/{id}")
