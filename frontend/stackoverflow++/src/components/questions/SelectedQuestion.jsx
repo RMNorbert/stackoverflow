@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Form, useParams } from "react-router-dom";
 import { Answer } from "../answers/Answer";
+import { SelfForm } from "../answers/SelfForm";
 
 export const SelectedQuestion = () => {
   const [currentQuestion, setCurrentQuestion] = useState(null);
@@ -35,6 +36,7 @@ export const SelectedQuestion = () => {
   else
     return (
       <div>
+        <SelfForm key={params.id} userID={params.id} />
         <div className="flex justify-center">
           <div className="h-64 bg-white my-5 rounded-xl w-2/3 text-black  ">
             <p className="text-5xl flex justify-center">

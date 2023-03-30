@@ -35,8 +35,9 @@ public class AnswerController {
     }
 
     @PostMapping("/")
+    @CrossOrigin
     public int addNewAnswer(@RequestBody NewAnswerDTO answerDTO) {
-        return answerService.addNewAnswer(new NewAnswerDTO("answer"));
+        return answerService.addNewAnswer(new NewAnswerDTO("answer" ));
     }
 
     @DeleteMapping("/{id}")

@@ -8,10 +8,8 @@ export const Register = () => {
     e.preventDefault();
     let username = e.target[0].value;
     let password = e.target[1].value;
-    console.log(password);
     //Post request, hogy van-e ilyen felhasznalo
     let user = await checkAvailableUser(username, password);
-    console.log(user);
     if (user) console.log("This exists");
     else {
     //   createUser(username, password);
