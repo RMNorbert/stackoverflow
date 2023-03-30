@@ -28,6 +28,7 @@ public class AnswerController {
     public Optional<AnswerDTO> getAnswerById(@PathVariable int id) {
         return answerService.getAnswerById(id);
     }
+    @CrossOrigin
     @GetMapping("/q/{id}")
     public List<AnswerDTO> getAllAnswersByQuestionId(@PathVariable int id){
         return answerService.getAllAnswersByQuestionId(id);
