@@ -21,12 +21,12 @@ public class QuestionService {
     }
 
     public List<QuestionDTO> getAllQuestions() {
-        return questionsDAO.getAllQuestion().stream().map(QuestionDTO::new).toList();
+        return questionsDAO.getAllQuestion().stream().map(QuestionDTO::of).toList();
     }
 
     public Optional<QuestionDTO> getQuestionById(int id) {
         Optional<Question> question = questionsDAO.findQuestionById(id);
-        return question.map(QuestionDTO::new);
+        return question.map(QuestionDTO::of);
     }
 
     public boolean deleteQuestionById(int id) {

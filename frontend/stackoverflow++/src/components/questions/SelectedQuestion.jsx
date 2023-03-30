@@ -17,15 +17,15 @@ export const SelectedQuestion = () => {
       "http://127.0.0.1:8080/answers/q/" + params.id
     );
     const questionData = await questionResponse.json();
+    console.log(questionData);
     const answerData = await answersResponse.json();
-    setCurrentQuestion(questionData.question);
+    setCurrentQuestion(questionData);
     setAnswers(answerData);
     setIsLoading(false);
   };
   useEffect(() => {
     getData();
   }, []);
-  console.log(answers);
   if (isLoading)
     return (
       <div>

@@ -23,7 +23,7 @@ public class UserService {
     public List<UserDTO> getAllUser() {
         return userDAO.getAllUser()
                 .stream()
-                .map(UserDTO::new)
+                .map(UserDTO::of)
                 .toList();
     }
 
