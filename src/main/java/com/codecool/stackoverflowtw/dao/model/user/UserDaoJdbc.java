@@ -4,13 +4,13 @@ package com.codecool.stackoverflowtw.dao.model.user;
 import com.codecool.stackoverflowtw.controller.dto.user.NewUserDTO;
 import com.codecool.stackoverflowtw.dao.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Repository
 public class UserDaoJdbc implements UserDAO {
     private final JdbcTemplate jdbcTemplate;
 

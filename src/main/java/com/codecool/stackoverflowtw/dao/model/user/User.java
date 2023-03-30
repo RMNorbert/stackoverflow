@@ -1,13 +1,8 @@
 package com.codecool.stackoverflowtw.dao.model.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 import java.time.LocalDateTime;
 
-@Entity
+
 public class User {
 
     public User(Long id, String status,String name, String password, LocalDateTime registration_date,Integer number_of_questions,Integer number_of_answers) {
@@ -19,8 +14,6 @@ public class User {
         this.number_of_questions = number_of_questions;
         this.number_of_answers = number_of_answers;
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String status;
     private String name;

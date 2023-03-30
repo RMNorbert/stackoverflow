@@ -6,13 +6,13 @@ import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 
 import com.codecool.stackoverflowtw.dao.QuestionRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Repository
 public class QuestionsDaoJdbc implements QuestionsDAO {
     private final JdbcTemplate jdbcTemplate;
 
@@ -21,21 +21,21 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
     @Override
     public List<Question> getAllQuestion() {
-        String sql = "SELECT question.question_id, title, question.description, question.created, COUNT(answer_id) as numberOfAnswers" +
-                "FROM question" +
-                "    LEFT JOIN answer a on question.question_id = a.question_id" +
-                "GROUP BY question.question_id";
+        String sql = "SELECT question.question_id, user_id, title, question.description, question.created, COUNT(answer_id) as numberOfAnswers " +
+                " FROM question" +
+                "    LEFT JOIN answer a on question.question_id = a.question_id " +
+                " GROUP BY question.question_id";
 
         return jdbcTemplate.query(sql, new QuestionRowMapper());
     }
 
     @Override
     public Optional<Question> findQuestionById(int id) {
-        String sql = "SELECT question.question_id, title, question.description, question.created, COUNT(answer_id) as numberOfAnswers" +
-                "FROM question" +
-                "    LEFT JOIN answer a on question.question_id = a.question_id" +
-                "WHERE question.question_id = ?" +
-                "GROUP BY question.question_id";
+        String sql = "SELECT question.question_id, title, question.description, question.created, COUNT(answer_id) as numberOfAnswers " +
+                " FROM question " +
+                "    LEFT JOIN answer a on question.question_id = a.question_id " +
+                " WHERE question.question_id = ? " +
+                " GROUP BY question.question_id ";
 
         return jdbcTemplate.query(sql, new QuestionRowMapper(), id)
                 .stream()
