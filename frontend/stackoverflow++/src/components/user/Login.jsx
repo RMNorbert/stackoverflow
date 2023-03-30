@@ -13,7 +13,9 @@ export const Login = () => {
         let user = await checkAvailableUser(username, password);
     
         if (user) {
+            console.log(user);
             Cookies.set("user", username)
+            Cookies.set("id", user.id)
             navigate("/");
         } else setInvalid(true);
     };
