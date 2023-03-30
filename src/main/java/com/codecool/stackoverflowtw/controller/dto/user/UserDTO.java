@@ -2,5 +2,30 @@ package com.codecool.stackoverflowtw.controller.dto.user;
 
 import com.codecool.stackoverflowtw.dao.model.user.User;
 
-public record UserDTO(User user) {
+import java.time.LocalDateTime;
+
+public class UserDTO {
+    private int id;
+    private String status;
+    private String name;
+    private LocalDateTime registration_date;
+    private int number_of_questions;
+    private int number_of_answers;
+
+    private UserDTO(int id, String status, String name, LocalDateTime registration_date, int number_of_questions, int number_of_answers) {
+        this.id = id;
+        this.status = status;
+        this.name = name;
+        this.registration_date = registration_date;
+        this.number_of_questions = number_of_questions;
+        this.number_of_answers = number_of_answers;
+    }
+
+    public static UserDTO of(User user) {
+        return new UserDTO(user.getId(),
+                user.getStatus(), user.getName(),
+                user.getRegistration_date(),
+                user.getNumber_of_questions(),
+                user.getNumber_of_answers());
+    }
 }

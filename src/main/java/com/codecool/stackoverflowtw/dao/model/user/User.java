@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 public class User {
 
-    public User(Long id, String status,String name, String password, LocalDateTime registration_date,Integer number_of_questions,Integer number_of_answers) {
+    public User(int id, String status,String name, String password, LocalDateTime registration_date,Integer number_of_questions,Integer number_of_answers) {
         this.id = id;
         this.status = status;
         this.name = name;
@@ -21,7 +21,7 @@ public class User {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     private String status;
     private String name;
     private String password;
@@ -31,7 +31,7 @@ public class User {
 
     public User() {}
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
