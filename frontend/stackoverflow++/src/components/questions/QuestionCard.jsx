@@ -1,3 +1,4 @@
+import React from "react";
 import { MdQuestionAnswer } from "react-icons/md";
 import { useNavigate } from "react-router";
 export const QuestionCard = ({ id, title, description, created, numberOfAnswers }) => {

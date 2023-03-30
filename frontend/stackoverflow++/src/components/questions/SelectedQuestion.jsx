@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, useParams } from "react-router-dom";
 import { Answer } from "../answers/Answer";
 import { SelfForm } from "../answers/SelfForm";
@@ -49,8 +49,8 @@ export const SelectedQuestion = () => {
           {answers.map((currentAnswer, i) => (
             <Answer
               key={i}
-              description={currentAnswer.answer.description}
-              created={currentAnswer.answer.created}
+              description={currentAnswer.description}
+              created={currentAnswer.created}
             />
           ))}
         </div>

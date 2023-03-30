@@ -48,8 +48,8 @@ public class AnswersDaoJdbc implements AnswerDAO {
 
     @Override
     public int addAnswer(NewAnswerDTO newAnswerDTO) {
-        String sql = "INSERT INTO question(description,created) values (?,?)";
-        return jdbcTemplate.update(sql, newAnswerDTO.description(),LocalDateTime.now().toString());
+        String sql = "INSERT INTO answer(description,created, question_id) values (?,?, ?)";
+        return jdbcTemplate.update(sql, newAnswerDTO.description(),LocalDateTime.now(), newAnswerDTO.questionID());
     }
 
     @Override

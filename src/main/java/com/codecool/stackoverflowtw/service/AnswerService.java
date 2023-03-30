@@ -32,7 +32,7 @@ public class AnswerService {
     public List<AnswerDTO> getAllAnswersByQuestionId(int id){
         return answerDAO.getAllAnswersByQuestionId(id)
                 .stream()
-                .map(AnswerDTO::new)
+                .map(AnswerDTO::of)
                 .toList();
     }
 

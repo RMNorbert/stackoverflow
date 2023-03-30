@@ -1,4 +1,6 @@
+import React from "react";
 import { QuestionCard } from "./QuestionCard";
+
 
 export const QuestionList = ({ questionData }) => {
   return (

@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { useState } from "react";
+import React, { useState } from "react";
 import { uploadQuestion } from "../../utils/uploadQuestion";
 
 export const CreateQuestion = () => {

@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import React from "react";
 import { useEffect, useState } from "react";
 import { RiUser3Fill } from "react-icons/ri";
 export const Header = () => {
@@ -31,8 +32,10 @@ export const Header = () => {
         {open ? (
           isLoggedIn ? (
             <div>
-            <a href="/user"><div>{username}</div></a>
-              
+              <a href="/user">
+                <div>{username}</div>
+              </a>
+
               <button onClick={handleLogout}>Logout</button>
             </div>
           ) : (

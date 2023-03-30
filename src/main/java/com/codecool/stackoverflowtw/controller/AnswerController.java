@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("answers")
 public class AnswerController {
     private final AnswerService answerService;
@@ -37,7 +38,7 @@ public class AnswerController {
     @PostMapping("/")
     @CrossOrigin
     public int addNewAnswer(@RequestBody NewAnswerDTO answerDTO) {
-        return answerService.addNewAnswer(new NewAnswerDTO("answer" ));
+        return answerService.addNewAnswer(answerDTO);
     }
 
     @DeleteMapping("/{id}")
