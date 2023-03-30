@@ -39,9 +39,9 @@ public class AnswersDaoJdbc implements AnswerDAO {
     }
 
     @Override
-    public int addAnswer(NewAnswerDTO answerDTO) {
+    public int addAnswer(NewAnswerDTO newAnswerDTO) {
         String sql = "INSERT INTO question(description,created) values (?,?)";
-        return jdbcTemplate.update(sql, answerDTO.description(),LocalDateTime.now().toString());
+        return jdbcTemplate.update(sql, newAnswerDTO.description(),LocalDateTime.now().toString());
     }
 
     @Override
@@ -53,6 +53,6 @@ public class AnswersDaoJdbc implements AnswerDAO {
     @Override
     public void update(AnswerDTO answerDTO, int id) {
         String sql = "UPDATE answer set description = ? WHERE question_id =" + id;
-         jdbcTemplate.update(sql, answerDTO.answer().getDescription());
+         jdbcTemplate.update(sql, answerDTO.getDescription());
     }
 }

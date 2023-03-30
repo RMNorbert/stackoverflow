@@ -1,14 +1,13 @@
 package com.codecool.stackoverflowtw.controller.dto.user;
-
 import com.codecool.stackoverflowtw.dao.model.user.User;
 
 import java.time.LocalDateTime;
 
 public class UserDTO {
-    private int id;
+    private final int id;
     private String status;
     private String name;
-    private LocalDateTime registration_date;
+    private final LocalDateTime registration_date;
     private int number_of_questions;
     private int number_of_answers;
 
@@ -28,4 +27,5 @@ public class UserDTO {
                 user.getNumber_of_questions(),
                 user.getNumber_of_answers());
     }
+
 }

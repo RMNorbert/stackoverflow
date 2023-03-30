@@ -35,17 +35,17 @@ public class UserDaoJdbc implements UserDAO {
     }
 
     @Override
-    public Optional<User> findUser(NewUserDTO userDTO) {
+    public Optional<User> findUser(NewUserDTO newUserDTO) {
         String sql = "SELECT name, registration_date, number_of_questions, number_of_answers " +
                 " FROM \"user\" WHERE name = ? AND password = ?";
-        return jdbcTemplate.query(sql, new UserRowMapper(), userDTO.username(),userDTO.password())
+        return jdbcTemplate.query(sql, new UserRowMapper(), newUserDTO.username(),newUserDTO.password())
                 .stream()
                 .findFirst();
     }
     @Override
-    public int addUser(NewUserDTO userDTO) {
+    public int addUser(NewUserDTO newUserDTO) {
         String sql = "INSERT INTO \"user\"(name,password,registration_date,number_of_questions,number_of_answers) values (?,?,?,?,?)";
-        return jdbcTemplate.update(sql,userDTO.username() ,userDTO.password(), LocalDateTime.now(),0,0);
+        return jdbcTemplate.update(sql,newUserDTO.username() ,newUserDTO.password(), LocalDateTime.now(),0,0);
     }
 
     @Override

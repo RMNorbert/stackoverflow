@@ -5,8 +5,8 @@ import com.codecool.stackoverflowtw.dao.model.question.Question;
 import java.time.LocalDateTime;
 
 public class QuestionDTO {
-    private Integer question_id;
-    private int user_id;
+    private final Integer question_id;
+    private final int user_id;
     private String title;
     private String description;
     private LocalDateTime created;
@@ -26,6 +26,30 @@ public class QuestionDTO {
         this.numberOfAnswers = numberOfAnswers;
     }
 
+    public Integer getQuestion_id() {
+        return question_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public int getNumberOfAnswers() {
+        return numberOfAnswers;
+    }
+
     public static QuestionDTO of(Question question) {
         return new QuestionDTO(
                 question.getQuestion_id(),
@@ -36,4 +60,5 @@ public class QuestionDTO {
                 question.getNumberOfAnswers()
         );
     }
+
 }

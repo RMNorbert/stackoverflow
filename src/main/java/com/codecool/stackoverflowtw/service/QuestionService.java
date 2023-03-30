@@ -5,18 +5,15 @@ import com.codecool.stackoverflowtw.dao.model.question.Question;
 import com.codecool.stackoverflowtw.dao.model.question.QuestionsDAO;
 import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
-import com.codecool.stackoverflowtw.dao.model.question.Question;
-import com.codecool.stackoverflowtw.dao.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class QuestionService {
-    private QuestionsDAO questionsDAO;
+    private final QuestionsDAO questionsDAO;
 
     @Autowired
     public QuestionService(QuestionsDAO questionsDAO) {
@@ -35,13 +32,6 @@ public class QuestionService {
     }
 
     public boolean deleteQuestionById(int id) {
-//        user.setName("Bethoven");///TODO: this check should be at front end
-//
-//        String authorOfQuestion = String.valueOf(getQuestionById(id).map(questionDTO -> questionDTO.question().getAuthor()));
-//        if (user.getName().equals(authorOfQuestion)) {
-//            return questionsDAO.deleteQuestionById(id);
-//        }
-//        return false;
         return questionsDAO.deleteQuestionById(id);
     }
 

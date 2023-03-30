@@ -48,10 +48,10 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         return jdbcTemplate.query(sql, new QuestionRowMapper(),userID);
     }
     @Override
-    public int addQuestion(NewQuestionDTO questionDTO) {
+    public int addQuestion(NewQuestionDTO newQuestionDTO) {
         String sql = "INSERT INTO question(user_id,title,description,created) values (?,?,?)";
 
-        return jdbcTemplate.update(sql,questionDTO.userID(), questionDTO.title(), questionDTO.description(), LocalDateTime.now());
+        return jdbcTemplate.update(sql,newQuestionDTO.userID(), newQuestionDTO.title(), newQuestionDTO.description(), LocalDateTime.now());
     }
 
     @Override
@@ -63,6 +63,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     @Override
     public void update(QuestionDTO questionDTO, int id) {
         String sql = "UPDATE question set title = ? , description = ? WHERE question_id =" + id;
-        jdbcTemplate.update(sql, questionDTO.question().getTitle(),questionDTO.question().getDescription());
+        jdbcTemplate.update(sql, questionDTO.getTitle(),questionDTO.getDescription());
     }
 }
