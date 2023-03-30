@@ -6,7 +6,7 @@ export const SelfForm = ({ questionID }) => {
     let description = e.target[0].value;
 
     let a = await submitAnswer(description, questionID);
-    console.log(a);
+    console.log(a );
   };
   return (
     <form
