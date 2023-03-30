@@ -1,11 +1,12 @@
 import { submitAnswer } from "../../utils/submitAnswer";
 
-export const SelfForm = ({ userID }) => {
+export const SelfForm = ({ questionID }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let description = e.target[0].value;
 
-    submitAnswer(description, userID);
+    let a = await submitAnswer(description, questionID);
+    console.log(a);
   };
   return (
     <form

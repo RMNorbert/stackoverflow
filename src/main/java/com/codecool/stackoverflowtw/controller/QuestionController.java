@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
 @CrossOrigin
+@RestController
 @RequestMapping("questions")
 public class QuestionController {
     private final QuestionService questionService;
@@ -32,7 +32,6 @@ public class QuestionController {
         return questionService.getQuestionById(id);
     }
 
-    @CrossOrigin
     @PostMapping("/")
     public int addNewQuestion(@RequestBody NewQuestionDTO question) {
         System.out.println(question.title());

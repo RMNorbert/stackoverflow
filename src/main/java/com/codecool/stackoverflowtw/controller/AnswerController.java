@@ -36,8 +36,8 @@ public class AnswerController {
     }
 
     @PostMapping("/")
-    @CrossOrigin
     public int addNewAnswer(@RequestBody NewAnswerDTO answerDTO) {
+        System.out.println(answerDTO.questionID());
         return answerService.addNewAnswer(answerDTO);
     }
 

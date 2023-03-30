@@ -43,7 +43,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
     @Override
     public int addQuestion(NewQuestionDTO newQuestionDTO) {
-        String sql = "INSERT INTO question(user_id,title,description,created) values (?,?,?)";
+        String sql = "INSERT INTO question(user_id,title,description,created) values (?,?,?,?)";
 
         return jdbcTemplate.update(sql,newQuestionDTO.userID(), newQuestionDTO.title(), newQuestionDTO.description(), LocalDateTime.now());
     }

@@ -3,7 +3,7 @@ import { Form, useParams } from "react-router-dom";
 import { Answer } from "../answers/Answer";
 import { SelfForm } from "../answers/SelfForm";
 
-export const SelectedQuestion = () => {
+export const SelectedQuestion = ({}) => {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [answers, setAnswers] = useState([]);
@@ -18,7 +18,6 @@ export const SelectedQuestion = () => {
       "http://127.0.0.1:8080/answers/q/" + params.id
     );
     const questionData = await questionResponse.json();
-    console.log(questionData);
     const answerData = await answersResponse.json();
     setCurrentQuestion(questionData);
     setAnswers(answerData);
@@ -36,7 +35,7 @@ export const SelectedQuestion = () => {
   else
     return (
       <div>
-        <SelfForm key={params.id} userID={params.id} />
+        <SelfForm key={params.id} questionID={params.id} />
         <div className="flex justify-center">
           <div className="h-64 bg-white my-5 rounded-xl w-2/3 text-black  ">
             <p className="text-5xl flex justify-center">
@@ -51,6 +50,7 @@ export const SelectedQuestion = () => {
               key={i}
               description={currentAnswer.description}
               created={currentAnswer.created}
+              
             />
           ))}
         </div>
