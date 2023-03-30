@@ -26,13 +26,12 @@ public class QuestionService {
     public List<QuestionDTO> getAllQuestions() {
         return questionsDAO.getAllQuestion()
                 .stream()
-                .map(QuestionDTO::new)
+                .map(QuestionDTO::of)
                 .toList();
     }
 
     public Optional<QuestionDTO> getQuestionById(int id) {
-        Optional<Question> question = questionsDAO.findQuestionById(id);
-        return question.map(QuestionDTO::new);
+        return convertOptionalQuestionToOptionalQuestionDTO(questionsDAO.findQuestionById(id));
     }
 
     public boolean deleteQuestionById(int id) {
@@ -48,6 +47,10 @@ public class QuestionService {
 
     public int addNewQuestion(NewQuestionDTO question) {
         return questionsDAO.addQuestion(new NewQuestionDTO(question.title(), question.description(), question.userID()));
+    }
+
+    private Optional<QuestionDTO> convertOptionalQuestionToOptionalQuestionDTO(Optional<Question> question) {
+        return  question.map(QuestionDTO::of);
     }
 
 }

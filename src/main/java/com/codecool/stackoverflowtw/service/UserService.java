@@ -1,5 +1,7 @@
 package com.codecool.stackoverflowtw.service;
 
+import com.codecool.stackoverflowtw.controller.dto.user.NewUserDTO;
+import com.codecool.stackoverflowtw.controller.dto.user.UserDTO;
 import com.codecool.stackoverflowtw.dao.model.user.User;
 import com.codecool.stackoverflowtw.dao.model.user.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,24 +20,31 @@ public class UserService {
     }
 
 
-    public List<User> getAllUser() {
-        return userDAO.getAllUser();
+    public List<UserDTO> getAllUser() {
+        return userDAO.getAllUser()
+                .stream()
+                .map(UserDTO::of)
+                .toList();
     }
 
-    public Optional<User> findUserById(int id) {
-        Optional<User> user = userDAO.findUserByName(id);
-        return user;
+    public Optional<UserDTO> findUserById(int id) {
+        return convertUserToOptionalDTO(userDAO.findUserByName(id));
+
     }
-    public Optional<User> logInUser(String username, String password) {
-        Optional<User> user = userDAO.findUser(username, password);
-        return user;
+
+    public Optional<UserDTO> logInUser(NewUserDTO userDTO) {
+        return convertUserToOptionalDTO(userDAO.findUser(userDTO));
     }
 
     public boolean deleteUserById(int id) {
-            return userDAO.deleteUserById(id);
+        return userDAO.deleteUserById(id);
     }
 
-    public int addUser(String username, String password) {
-        return userDAO.addUser(username,password);
+    public int addUser(NewUserDTO userDTO) {
+        return userDAO.addUser(userDTO);
+    }
+
+    private Optional<UserDTO> convertUserToOptionalDTO(Optional<User> userFromDB) {
+        return userFromDB.map(UserDTO::of);
     }
 }
