@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public class AnswersDaoJdbc implements AnswerDAO {
     private final JdbcTemplate jdbcTemplate;
-
+    @Autowired
     public AnswersDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -40,9 +40,10 @@ public class AnswersDaoJdbc implements AnswerDAO {
 
     @Override
     public List<Answer> getAllAnswersByQuestionId(int id) {
-        String sql = "SELECT answer_id, q.question_id, answer.description, answer.created " +
-                " from answer LEFT OUTER JOIN question q ON answer.question_id = q.question_id";
-        return jdbcTemplate.query(sql, new AnswerRowMapper());
+        String sql = "SELECT answer_id,question_id, answer.description, answer.created " +
+                " FROM answer " +
+                "WHERE answer.question_id = ?";
+        return jdbcTemplate.query(sql, new AnswerRowMapper(),id);
     }
 
 

@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public class QuestionsDaoJdbc implements QuestionsDAO {
     private final JdbcTemplate jdbcTemplate;
-
+    @Autowired
     public QuestionsDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
