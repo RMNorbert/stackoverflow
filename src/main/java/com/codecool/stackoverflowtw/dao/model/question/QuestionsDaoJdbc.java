@@ -5,6 +5,7 @@ import com.codecool.stackoverflowtw.controller.dto.question.NewQuestionDTO;
 import com.codecool.stackoverflowtw.controller.dto.question.QuestionDTO;
 
 import com.codecool.stackoverflowtw.dao.QuestionRowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +16,7 @@ import java.util.Optional;
 @Repository
 public class QuestionsDaoJdbc implements QuestionsDAO {
     private final JdbcTemplate jdbcTemplate;
-
+    @Autowired
     public QuestionsDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -31,7 +32,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public Optional<Question> findQuestionById(int id) {
-        String sql = "SELECT question.question_id, title, question.description, question.created, COUNT(answer_id) as numberOfAnswers " +
+        String sql = "SELECT question.question_id,user_id, title, question.description, question.created, COUNT(answer_id) as numberOfAnswers " +
                 " FROM question " +
                 "    LEFT JOIN answer a on question.question_id = a.question_id " +
                 " WHERE question.question_id = ? " +

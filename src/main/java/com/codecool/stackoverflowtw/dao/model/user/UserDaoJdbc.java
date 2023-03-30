@@ -3,6 +3,7 @@ package com.codecool.stackoverflowtw.dao.model.user;
 
 import com.codecool.stackoverflowtw.controller.dto.user.NewUserDTO;
 import com.codecool.stackoverflowtw.dao.UserRowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +14,7 @@ import java.util.Optional;
 @Repository
 public class UserDaoJdbc implements UserDAO {
     private final JdbcTemplate jdbcTemplate;
-
+    @Autowired
     public UserDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -26,7 +27,7 @@ public class UserDaoJdbc implements UserDAO {
 
     @Override
     public Optional<User> findUserByName(int id) {
-        String sql = "SELECT id, status,name, registration_date, number_of_questions, number_of_answers " +
+        String sql = "SELECT id,password, status,name, registration_date, number_of_questions, number_of_answers " +
                 " FROM \"user\" WHERE id = ?";
         return jdbcTemplate.query(sql, new UserRowMapper(),id)
                 .stream()

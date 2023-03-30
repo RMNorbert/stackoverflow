@@ -3,6 +3,7 @@ package com.codecool.stackoverflowtw.dao.model.answer;
 import com.codecool.stackoverflowtw.controller.dto.answer.AnswerDTO;
 import com.codecool.stackoverflowtw.controller.dto.answer.NewAnswerDTO;
 import com.codecool.stackoverflowtw.dao.AnswerRowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +14,7 @@ import java.util.Optional;
 @Repository
 public class AnswersDaoJdbc implements AnswerDAO {
     private final JdbcTemplate jdbcTemplate;
-
+    @Autowired
     public AnswersDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
