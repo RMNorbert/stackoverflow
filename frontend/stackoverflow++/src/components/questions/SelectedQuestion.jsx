@@ -1,16 +1,14 @@
 import {useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
 
 export const SelectedQuestion = () => {
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [params, searchParams] = useState(
-        window.location.pathname.split("/")[2] /*this gets the ID of the question.
-    This is a roundabout way, need to make it better*/
-    );
-
+    const [params, searchParams] = useState(useParams());
+    
     const getData = async () => {
         setIsLoading(true);
-        const response = await fetch("http://127.0.0.1:8080/questions/" + params);
+        const response = await fetch("http://127.0.0.1:8080/questions/" + params.id);
         const data = await response.json();
         setCurrentQuestion(data.question);
         setIsLoading(false);
@@ -18,7 +16,7 @@ export const SelectedQuestion = () => {
     useEffect(() => {
         getData();
     }, []);
-    console.log(currentQuestion);
+    // console.log(currentQuestion);
     if (isLoading)
         return (
             <div>
