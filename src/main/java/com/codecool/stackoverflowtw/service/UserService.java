@@ -23,15 +23,18 @@ public class UserService {
     public List<UserDTO> getAllUser() {
         return userDAO.getAllUser()
                 .stream()
-                .map(UserDTO::new)
+                .map(user -> new UserDTO( user.getId(), user.getStatus(), user.getName(), user.getRegistration_date(), user.getNumber_of_questions(), user.getNumber_of_answers()))
                 .toList();
     }
 
-    public Optional<User> findUserById(int id) {
-        return userDAO.findUserByName(id);
+    public Optional<UserDTO> findUserById(int id) {
+        return userDAO.findUserByName(id)
+                .map(user -> new UserDTO( user.getId(), user.getStatus(), user.getName(), user.getRegistration_date(), user.getNumber_of_questions(), user.getNumber_of_answers()));
+
     }
-    public Optional<User> logInUser(NewUserDTO userDTO) {
-        return userDAO.findUser(userDTO);
+    public Optional<UserDTO> logInUser(NewUserDTO userDTO) {
+        return userDAO.findUser(userDTO)
+                .map(user -> new UserDTO( user.getId(), user.getStatus(), user.getName(), user.getRegistration_date(), user.getNumber_of_questions(), user.getNumber_of_answers()));
     }
 
     public boolean deleteUserById(int id) {
