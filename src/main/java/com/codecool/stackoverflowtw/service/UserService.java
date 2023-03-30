@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     @Autowired
     public UserService(UserDAO userDAO) {

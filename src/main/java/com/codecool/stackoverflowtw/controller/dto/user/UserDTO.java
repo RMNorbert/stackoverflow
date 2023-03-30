@@ -28,4 +28,27 @@ public class UserDTO {
                 user.getNumber_of_answers());
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDateTime getRegistration_date() {
+        return registration_date;
+    }
+
+    public int getNumber_of_questions() {
+        return number_of_questions;
+    }
+
+    public int getNumber_of_answers() {
+        return number_of_answers;
+    }
 }
