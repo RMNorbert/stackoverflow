@@ -20,4 +20,12 @@ public class UserDTO {
         this.number_of_questions = number_of_questions;
         this.number_of_answers = number_of_answers;
     }
+
+    public static UserDTO of(User user) {
+        return new UserDTO(user.getId(),
+                user.getStatus(), user.getName(),
+                user.getRegistration_date(),
+                user.getNumber_of_questions(),
+                user.getNumber_of_answers());
+    }
 }
